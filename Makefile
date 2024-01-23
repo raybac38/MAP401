@@ -5,7 +5,7 @@
 # utilisation des variables internes $@ $< $^ $*
 # $@ : correspond au nom de la cible
 # $< : correspond au nom de la premiere dependance
-# $^ : correspond à toutes les dépendances
+# $^ : correspond ï¿½ toutes les dï¿½pendances
 # $* : correspond au nom du fichier sans extension 
 #       (dans les regles generiques uniquement)
 #############################################################################
@@ -19,7 +19,7 @@
 #############################################################################
 
 # compilateur C
-CC = clang
+CC = gcc
 
 # chemin d'acces aux librairies (interfaces)
 INCDIR = .
@@ -27,7 +27,7 @@ INCDIR = .
 # chemin d'acces aux librairies (binaires)
 LIBDIR = .
 
-# options pour l'édition des liens
+# options pour l'ï¿½dition des liens
 LDOPTS = -L$(LIBDIR) -lm
 
 # options pour la recherche des fichiers .o et .h
@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image
+EXECUTABLES = test_image test_geometrie2d
 
 
 #############################################################################
@@ -45,7 +45,7 @@ EXECUTABLES = test_image
 #############################################################################
 
 ########################################################
-# la règle par défaut
+# la rï¿½gle par dï¿½faut
 all : $(EXECUTABLES)
 
 ########################################################
@@ -68,14 +68,28 @@ image.o : image.c image.h types_macros.h
 	@echo "---------------------------------------------"
 	@echo "Compilation du module image"
 	@echo "---------------------------------------------"
-	$(CC) -c $(COMPILOPTS) $<
+	$(CC) -c $(COMPILOPTS) $< -o $@
 
-test_image.o : test_image.c image.h 
+geometrie2d.o : geometrie2d.c geometrie2d.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module geometrie2d"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@
+
+test_image.o: test_image.c image.h 
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module test_image"
 	@echo "---------------------------------------------"
-	$(CC) -c $(COMPILOPTS) $<
+	$(CC) -c $(COMPILOPTS) $< -o $@
+
+test_geometrie2d.o : test_geometrie2d.c geometrie2d.h 
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_geometrie2d"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@
 		
 		
 ########################################################
@@ -88,7 +102,13 @@ test_image : test_image.o image.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
+test_geometrie2d : test_geometrie2d.o geometrie2d.o 
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
 
-# regle pour "nettoyer" le répertoire
+# regle pour "nettoyer" le rï¿½pertoire
 clean:
 	rm -fR $(EXECUTABLES) *.o 

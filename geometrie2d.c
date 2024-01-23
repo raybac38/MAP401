@@ -146,12 +146,12 @@ double GetValuePoint2(Point2 * a, char coord)
 /*Print Vector2 in the console*/
 void ShowVector2(Vector2 *a)
 {
-    printf("Vector (%d, %d)", a->x, a->y);
+    printf("Vector (%f, %f)", a->x, a->y);
 }
 
 /*Print Point2 in the console*/
 void ShowPoint2(Point2 * a)
 {
-    printf("Point (%d, %d)", a->x, a->y);
+    printf("Point (%f, %f)", a->x, a->y);
 }
 

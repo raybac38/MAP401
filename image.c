@@ -203,7 +203,7 @@ Image lire_fichier_image(char *nom_f)
 	while (!feof(f) && y<=H)
 	{
 		char c;
-		int res;
+		int res = ' ';
 		
 		/* lire un caractere en passant les caracteres differents de '0' et '1' */
 		res = fscanf(f, "%c", &c);
