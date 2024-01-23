@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "vector2.h"
+#include "geometrie2d.h"
 
 double Dotproduct(Vector2 * a, Vector2 * b)
 {
@@ -110,3 +110,48 @@ void FreePoint2(Point2 ** a)
     free(*a);
     *a = NULL;
 }
+
+
+/*Get value of a Vector2*/
+double GetValueVector2(Vector2 * a, char coord)
+{
+    if(coord == 'x')
+    {
+        return a->x;
+    }
+    if(coord == 'y')
+    {
+        return a->y;
+    }
+    printf(" ...What exactly do you want? There are only two dimensions");
+    return 0;
+}
+
+/*Get value of a Pointr2*/
+double GetValuePoint2(Point2 * a, char coord)
+{
+    if(coord == 'x')
+    {
+        return a->x;
+    }
+    if(coord == 'y')
+    {
+        return a->y;
+    }
+    printf(" ...What exactly do you want? There are only two dimensions");
+    return 0;
+}
+
+
+/*Print Vector2 in the console*/
+void ShowVector2(Vector2 *a)
+{
+    printf("Vector (%f, %f)", a->x, a->y);
+}
+
+/*Print Point2 in the console*/
+void ShowPoint2(Point2 * a)
+{
+    printf("Point (%f, %f)", a->x, a->y);
+}
+

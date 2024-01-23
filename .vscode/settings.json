@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "vector2.h": "c"
+        "vector2.h": "c",
+        "geometrie2d.h": "c"
     }
 }
