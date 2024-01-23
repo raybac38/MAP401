@@ -237,14 +237,14 @@ void ecrire_image(Image I)
     printf("\n--- Impression Image ---\n\n");
 	
     Pixel pix;
-    for (UINT j = 0; j <= hauteur; j++)
+    for (UINT j = 1; j <= hauteur; j++)
     {
-        for (UINT i = 0; i <= largeur; i++)
+        for (UINT i = 1; i <= largeur; i++)
         {
             pix = get_pixel_image(I, i, j);
             if(pix == BLANC)
             {
-                printf(" ");
+                printf(".");
             }
             else
             {
@@ -266,9 +266,9 @@ Image negatif_image(Image I)
 	UINT hauteur = hauteur_image(I);
 
     Pixel pix;
-    for(UINT j = 0; j <= hauteur ; j++)
+    for(UINT j = 1; j <= hauteur ; j++)
     {
-        for (UINT i = 0; i <= largeur ; i++)
+        for (UINT i = 1; i <= largeur ; i++)
         {
             pix = get_pixel_image(I, i, j);
             if(pix == BLANC)

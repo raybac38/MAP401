@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "types_macros.h"
 
-void main(int argc, char * argv[])
+int main(int argc, char * argv[])
 {
     if(argc != 2)
     {
@@ -13,4 +13,5 @@ void main(int argc, char * argv[])
     ecrire_image(img);
     img = negatif_image(img);
     ecrire_image(img);
+    return 0;
 }
