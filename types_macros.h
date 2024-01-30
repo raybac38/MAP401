@@ -2,6 +2,9 @@
   declaration de differents types et macros
 ******************************************************************************/
  
+
+typedef enum {Nord, Est, Sud, Ouest} Orientation;
+
 #ifndef _TYPES_MACROS_H_
 #define _TYPES_MACROS_H_
 
