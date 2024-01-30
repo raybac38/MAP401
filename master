@@ -1,0 +1,853 @@
+[1mdiff --git a/.vscode/settings.json b/.vscode/settings.json[m
+[1mindex 0195e87..5aa1648 100644[m
+[1m--- a/.vscode/settings.json[m
+[1m+++ b/.vscode/settings.json[m
+[36m@@ -1,6 +1,5 @@[m
+ {[m
+     "files.associations": {[m
+[31m-        "vector2.h": "c",[m
+[31m-        "geometrie2d.h": "c"[m
+[32m+[m[32m        "vector2.h": "c"[m
+     }[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/Makefile b/Makefile[m
+[1mindex 0bf39f1..d6bfd66 100644[m
+[1m--- a/Makefile[m
+[1m+++ b/Makefile[m
+[36m@@ -5,7 +5,7 @@[m
+ # utilisation des variables internes $@ $< $^ $*[m
+ # $@ : correspond au nom de la cible[m
+ # $< : correspond au nom de la premiere dependance[m
+[31m-# $^ : correspond ÔøΩ toutes les dÔøΩpendances[m
+[32m+[m[32m# $^ : correspond ‡ toutes les dÈpendances[m
+ # $* : correspond au nom du fichier sans extension [m
+ #       (dans les regles generiques uniquement)[m
+ #############################################################################[m
+[36m@@ -19,7 +19,7 @@[m
+ #############################################################################[m
+ [m
+ # compilateur C[m
+[31m-CC = gcc[m
+[32m+[m[32mCC = clang[m
+ [m
+ # chemin d'acces aux librairies (interfaces)[m
+ INCDIR = .[m
+[36m@@ -27,7 +27,7 @@[m [mINCDIR = .[m
+ # chemin d'acces aux librairies (binaires)[m
+ LIBDIR = .[m
+ [m
+[31m-# options pour l'ÔøΩdition des liens[m
+[32m+[m[32m# options pour l'Èdition des liens[m
+ LDOPTS = -L$(LIBDIR) -lm[m
+ [m
+ # options pour la recherche des fichiers .o et .h[m
+[36m@@ -37,7 +37,7 @@[m [mINCLUDEOPTS = -I$(INCDIR)[m
+ COMPILOPTS = -g -Wall $(INCLUDEOPTS)[m
+ [m
+ # liste des executables[m
+[31m-EXECUTABLES = test_image test_geometrie2d[m
+[32m+[m[32mEXECUTABLES = test_image[m
+ [m
+ [m
+ #############################################################################[m
+[36m@@ -45,7 +45,7 @@[m [mEXECUTABLES = test_image test_geometrie2d[m
+ #############################################################################[m
+ [m
+ ########################################################[m
+[31m-# la rÔøΩgle par dÔøΩfaut[m
+[32m+[m[32m# la rËgle par dÈfaut[m
+ all : $(EXECUTABLES)[m
+ [m
+ ########################################################[m
+[36m@@ -68,28 +68,14 @@[m [mimage.o : image.c image.h types_macros.h[m
+ 	@echo "---------------------------------------------"[m
+ 	@echo "Compilation du module image"[m
+ 	@echo "---------------------------------------------"[m
+[31m-	$(CC) -c $(COMPILOPTS) $< -o $@[m
+[31m-[m
+[31m-geometrie2d.o : geometrie2d.c geometrie2d.h[m
+[31m-	@echo ""[m
+[31m-	@echo "---------------------------------------------"[m
+[31m-	@echo "Compilation du module geometrie2d"[m
+[31m-	@echo "---------------------------------------------"[m
+[31m-	$(CC) -c $(COMPILOPTS) $< -o $@[m
+[32m+[m	[32m$(CC) -c $(COMPILOPTS) $<[m
+ [m
+[31m-test_image.o: test_image.c image.h [m
+[32m+[m[32mtest_image.o : test_image.c image.h[m[41m [m
+ 	@echo ""[m
+ 	@echo "---------------------------------------------"[m
+ 	@echo "Compilation du module test_image"[m
+ 	@echo "---------------------------------------------"[m
+[31m-	$(CC) -c $(COMPILOPTS) $< -o $@[m
+[31m-[m
+[31m-test_geometrie2d.o : test_geometrie2d.c geometrie2d.h [m
+[31m-	@echo ""[m
+[31m-	@echo "---------------------------------------------"[m
+[31m-	@echo "Compilation du module test_geometrie2d"[m
+[31m-	@echo "---------------------------------------------"[m
+[31m-	$(CC) -c $(COMPILOPTS) $< -o $@[m
+[32m+[m	[32m$(CC) -c $(COMPILOPTS) $<[m
+ 		[m
+ 		[m
+ ########################################################[m
+[36m@@ -102,13 +88,7 @@[m [mtest_image : test_image.o image.o[m
+ 	@echo "---------------------------------------------"[m
+ 	$(CC) $^ $(LDOPTS) -o $@[m
+ [m
+[31m-test_geometrie2d : test_geometrie2d.o geometrie2d.o [m
+[31m-	@echo ""[m
+[31m-	@echo "---------------------------------------------"[m
+[31m-	@echo "Creation de l'executable "$@[m
+[31m-	@echo "---------------------------------------------"[m
+[31m-	$(CC) $^ $(LDOPTS) -o $@[m
+ [m
+[31m-# regle pour "nettoyer" le rÔøΩpertoire[m
+[32m+[m[32m# regle pour "nettoyer" le rÈpertoire[m
+ clean:[m
+ 	rm -fR $(EXECUTABLES) *.o [m
+[1mdiff --git a/contour.c b/contour.c[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/contour.h b/contour.h[m
+[1mdeleted file mode 100644[m
+[1mindex 95b2502..0000000[m
+[1m--- a/contour.h[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-unsigned int DIMMAX = [m
+\ No newline at end of file[m
+[1mdiff --git a/core b/core[m
+[1mdeleted file mode 100644[m
+[1mindex aee3923..0000000[m
+Binary files a/core and /dev/null differ
+[1mdiff --git a/geometrie2d.c b/geometrie2d.c[m
+[1mdeleted file mode 100644[m
+[1mindex d2b05de..0000000[m
+[1m--- a/geometrie2d.c[m
+[1m+++ /dev/null[m
+[36m@@ -1,171 +0,0 @@[m
+[31m-#include <stdio.h>[m
+[31m-#include <stdlib.h>[m
+[31m-#include <math.h>[m
+[31m-#include "geometrie2d.h"[m
+[31m-[m
+[31m-double Dotproduct(Vector2 a, Vector2 b)[m
+[31m-{[m
+[31m-    return (a.x * b.x) + (a.y * b.y);[m
+[31m-}[m
+[31m-[m
+[31m-Vector2 ScaleVector2(Vector2 a, double b)[m
+[31m-{[m
+[31m-    Vector2 vect;[m
+[31m-    vect.x = a.x *b;[m
+[31m-    vect.y = a.y * b;[m
+[31m-    return vect;[m
+[31m-}[m
+[31m-[m
+[31m-Point2 ScalePoint2(Point2 a, double b)[m
+[31m-{[m
+[31m-    Point2 pt;[m
+[31m-    pt.x = a.x *b;[m
+[31m-    pt.y = a.y * b;[m
+[31m-    return pt;[m
+[31m-}[m
+[31m-[m
+[31m-Point2 SumPoint2(Point2 a, Point2 b)[m
+[31m-{[m
+[31m-    Point2 pt;[m
+[31m-    pt.x = a.x + b.x;[m
+[31m-    pt.y = a.y + b.y;[m
+[31m-    return pt;[m
+[31m-}[m
+[31m-[m
+[31m-Vector2 SumVector2(Vector2 a, Vector2 b)[m
+[31m-{[m
+[31m-    Vector2 vect;[m
+[31m-    vect.x = a.x + b.x;[m
+[31m-    vect.y = a.y + b.y;[m
+[31m-    return vect;[m
+[31m-}[m
+[31m-Vector2 * InitVector2()[m
+[31m-{[m
+[31m-    return (Vector2 *)malloc(sizeof(Vector2));[m
+[31m-}[m
+[31m-[m
+[31m-double Distance(Point2 a, Point2 b)[m
+[31m-{[m
+[31m-    return sqrt(pow(b.x - a.x, 2) + pow(b.y -a.y, 2));[m
+[31m-}[m
+[31m-[m
+[31m-Vector2 Vector2FromPoint2(Point2 a, Point2 b)[m
+[31m-{[m
+[31m-    Vector2 vect;[m
+[31m-    vect.x = b.x - a.x;[m
+[31m-    vect.y = b.y - a.y;[m
+[31m-    return vect;[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-/*Create a vector from 2 double*/[m
+[31m-Vector2 SetVector2(double x, double y)[m
+[31m-{[m
+[31m-    Vector2 vect;[m
+[31m-    vect.x = x;[m
+[31m-    vect.y = y;[m
+[31m-    return vect;[m
+[31m-}[m
+[31m-[m
+[31m-/*Create a point from 2 double*/[m
+[31m-Point2 SetPoint2(double x, double y)[m
+[31m-{[m
+[31m-    Point2 pt;[m
+[31m-    pt.x = x;[m
+[31m-    pt.y = y;[m
+[31m-    return pt;[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-Point2 * InitPoint2()[m
+[31m-{[m
+[31m-    return malloc(sizeof(Point2));[m
+[31m-}[m
+[31m-[m
+[31m-double Norme(Vector2 a)[m
+[31m-{[m
+[31m-    return sqrt(pow(a.x, 2) + pow(a.y, 2));[m
+[31m-}[m
+[31m-[m
+[31m-Vector2 Normalize(Vector2 a)[m
+[31m-{[m
+[31m-    Vector2 vect;[m
+[31m-    double norme = Norme(a);[m
+[31m-    vect.x = a.x / norme;[m
+[31m-    vect.y = a.y / norme;[m
+[31m-    return vect;[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-void FreeVector2(Vector2 ** a)[m
+[31m-{[m
+[31m-    free(*a);[m
+[31m-    *a = NULL;[m
+[31m-}[m
+[31m-void FreePoint2(Point2 ** a)[m
+[31m-{[m
+[31m-    free(*a);[m
+[31m-    *a = NULL;[m
+[31m-}[m
+[31m-[m
+[31m-Point2 * MallocPoint2(Point2 a)[m
+[31m-{[m
+[31m-    Point2 * newpoint = InitPoint2();[m
+[31m-    newpoint->x = a.x;[m
+[31m-    newpoint->y = a.y;[m
+[31m-    return newpoint;[m
+[31m-}[m
+[31m-[m
+[31m-Vector2 * MallocVector2(Vector2 a)[m
+[31m-{[m
+[31m-    Vector2 * newvector = InitVector2();[m
+[31m-    newvector->x = a.x;[m
+[31m-    newvector->y = a.y;[m
+[31m-    return newvector;[m
+[31m-}[m
+[31m-/*Get value of a Vector2*/[m
+[31m-double GetValueVector2(Vector2 a, char coord)[m
+[31m-{[m
+[31m-    if(coord == 'x')[m
+[31m-    {[m
+[31m-        return a.x;[m
+[31m-    }[m
+[31m-    if(coord == 'y')[m
+[31m-    {[m
+[31m-        return a.y;[m
+[31m-    }[m
+[31m-    printf(" ...What exactly do you want? There are only two dimensions");[m
+[31m-    return 0;[m
+[31m-}[m
+[31m-[m
+[31m-/*Get value of a Pointr2*/[m
+[31m-double GetValuePoint2(Point2 a, char coord)[m
+[31m-{[m
+[31m-    if(coord == 'x')[m
+[31m-    {[m
+[31m-        return a.x;[m
+[31m-    }[m
+[31m-    if(coord == 'y')[m
+[31m-    {[m
+[31m-        return a.y;[m
+[31m-    }[m
+[31m-    printf(" ...What exactly do you want? There are only two dimensions");[m
+[31m-    return 0;[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-/*Print Vector2 in the console*/[m
+[31m-void ShowVector2(Vector2 a)[m
+[31m-{[m
+[31m-    printf("Vector (%f, %f)", a.x, a.y);[m
+[31m-}[m
+[31m-[m
+[31m-/*Print Point2 in the console*/[m
+[31m-void ShowPoint2(Point2  a)[m
+[31m-{[m
+[31m-    printf("Point (%f, %f)", a.x, a.y);[m
+[31m-}[m
+[31m-[m
+[1mdiff --git a/geometrie2d.h b/geometrie2d.h[m
+[1mdeleted file mode 100644[m
+[1mindex e765d46..0000000[m
+[1m--- a/geometrie2d.h[m
+[1m+++ /dev/null[m
+[36m@@ -1,76 +0,0 @@[m
+[31m-[m
+[31m-[m
+[31m-typedef struct Vector2[m
+[31m-{[m
+[31m-    double x;[m
+[31m-    double y;[m
+[31m-} Vector2;[m
+[31m-[m
+[31m-typedef struct Point2[m
+[31m-{[m
+[31m-    double x;[m
+[31m-    double y;[m
+[31m-} Point2;[m
+[31m-[m
+[31m-double Dotproduct(Vector2 a, Vector2 b);[m
+[31m-[m
+[31m-/* Malloc point2 value to memorie*/[m
+[31m-Point2 * MallocPoint2(Point2 a);[m
+[31m-[m
+[31m-/* Malloc vector2 value to memorie*/[m
+[31m-Vector2 * MallocVector2(Vector2 a);[m
+[31m-[m
+[31m-/*Create a scaled Vector2*/[m
+[31m-Vector2 ScaleVector2(Vector2 a, double b);[m
+[31m-[m
+[31m-/*Create a scaled Point2*/[m
+[31m-Point2 ScalePoint2(Point2 a, double b);[m
+[31m-[m
+[31m-/*creates a vector2 sum of two vector2*/[m
+[31m-Vector2 SumVector2(Vector2 a, Vector2 b);[m
+[31m-[m
+[31m-/*creates a Point2 sum of two Point2*/[m
+[31m-Point2 SumPoint2(Point2 a, Point2 b);[m
+[31m-[m
+[31m-/*Malloc un Vector2*/[m
+[31m-Vector2 * InitVector2(void);[m
+[31m-[m
+[31m-/*Malloc un Point2*/[m
+[31m-Point2 * InitPoint2(void);[m
+[31m-[m
+[31m-/*Calculate euclidien norme*/[m
+[31m-double Norme(Vector2 a);[m
+[31m-[m
+[31m-/*Calculate distance between two point*/[m
+[31m-double Distance(Point2 a, Point2 b);[m
+[31m-[m
+[31m-/*Create a vector of norm 1*/[m
+[31m-Vector2 Normalize(Vector2 a);[m
+[31m-[m
+[31m-/*Free struc and set it to NULL*/[m
+[31m-void FreeVector2(Vector2 ** a);[m
+[31m-[m
+[31m-/*Free struc and set it to NULL*/[m
+[31m-void FreePoint2(Point2 ** a);[m
+[31m-[m
+[31m-/*Create a Vector2 from 2 Point2*/[m
+[31m-Vector2  Vector2FromPoint2(Point2  a, Point2 b);[m
+[31m-[m
+[31m-/*Create a vector from 2 double*/[m
+[31m-Vector2 SetVector2(double x, double y);[m
+[31m-[m
+[31m-/*Create a point from 2 double*/[m
+[31m-Point2 SetPoint2(double x, double y);[m
+[31m-[m
+[31m-/*Get value of a Vector2*/[m
+[31m-double GetValueVector2(Vector2 a, char coord);[m
+[31m-[m
+[31m-/*Get value of a Pointr2*/[m
+[31m-double GetValuePoint2(Point2 a, char coord);[m
+[31m-[m
+[31m-/*Print Vector2 in the console*/[m
+[31m-void ShowVector2(Vector2 a);[m
+[31m-[m
+[31m-/*Print Point2 in the console*/[m
+[31m-void ShowPoint2(Point2 a);[m
+[31m-[m
+[1mdiff --git a/image.c b/image.c[m
+[1mindex 6cb7e72..23a8127 100644[m
+[1m--- a/image.c[m
+[1m+++ b/image.c[m
+[36m@@ -203,7 +203,7 @@[m [mImage lire_fichier_image(char *nom_f)[m
+ 	while (!feof(f) && y<=H)[m
+ 	{[m
+ 		char c;[m
+[31m-		int res = ' ';[m
+[32m+[m		[32mint res;[m
+ 		[m
+ 		/* lire un caractere en passant les caracteres differents de '0' et '1' */[m
+ 		res = fscanf(f, "%c", &c);[m
+[1mdiff --git a/image.o b/image.o[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3605454[m
+Binary files /dev/null and b/image.o differ
+[1mdiff --git a/tableau.c b/tableau.c[m
+[1mdeleted file mode 100644[m
+[1mindex 427f5ff..0000000[m
+[1m--- a/tableau.c[m
+[1m+++ /dev/null[m
+[36m@@ -1,71 +0,0 @@[m
+[31m-#include <stdlib.h>[m
+[31m-#include <stdio.h>[m
+[31m-#include <math.h>[m
+[31m-#include "tableau.h"[m
+[31m-#include "geometrie2d.h"[m
+[31m-[m
+[31m-[m
+[31m-/* Initialise un tableau*/[m
+[31m-Tableau * InitTableau()[m
+[31m-{[m
+[31m-    Tableau * tab = (Tableau *)malloc(sizeof(Tableau));[m
+[31m-    unsigned int size = (unsigned int)pow(2, DEFAULT_MAX_SIZE);[m
+[31m-    tab->power = (unsigned char)DEFAULT_MAX_SIZE;[m
+[31m-    tab->max = size - 1;[m
+[31m-    tab->size = 0;[m
+[31m-    tab->array = (Point2 *)malloc(sizeof(Point2) * size);[m
+[31m-    return tab;[m
+[31m-}[m
+[31m-[m
+[31m-/* Ajout d'un point a la fin du tableau*/[m
+[31m-void TableauAppend(Tableau * tab, Point2 a)[m
+[31m-{[m
+[31m-    if(tab->size == tab->max)[m
+[31m-    {[m
+[31m-        //FULL, RANGER NEED BACK-UP[m
+[31m-        TableauIncreaseSize(tab);[m
+[31m-    }[m
+[31m-[m
+[31m-    tab->array[tab->size] = a;[m
+[31m-    tab->size ++;[m
+[31m-}[m
+[31m-[m
+[31m-/* Avoir la taille du tableau*/[m
+[31m-unsigned TableauGetSize(Tableau * tab)[m
+[31m-{[m
+[31m-    return tab->size;[m
+[31m-};[m
+[31m-[m
+[31m-/* Li√®bre la mamoire du tableau*/[m
+[31m-void TableauFree(Tableau ** tab)[m
+[31m-{[m
+[31m-    free((*tab)->array);[m
+[31m-    free(*tab);[m
+[31m-    *tab = NULL;[m
+[31m-}[m
+[31m-[m
+[31m-/* Get point2 element from tab*/[m
+[31m-Point2 TableauGetPoint2(Tableau * tab, unsigned index)[m
+[31m-{[m
+[31m-    if(index >= tab->size || index < (unsigned int) 0)[m
+[31m-    {[m
+[31m-        printf("ERROR TAB OUT OF INDEX");[m
+[31m-        exit(EXIT_FAILURE);[m
+[31m-    }[m
+[31m-    return tab->array[index];[m
+[31m-[m
+[31m-}[m
+[31m-[m
+[31m-/* Fonction priv√© automatiquement appeler pour agrandir le tableau au besion*/[m
+[31m-void TableauIncreaseSize(Tableau * tab)[m
+[31m-{[m
+[31m-    tab->power ++;[m
+[31m-    unsigned int newsize = (unsigned int)pow(2, tab->power);[m
+[31m-    tab->max = newsize - 1;[m
+[31m-    tab->array = (Point2 *)realloc(tab->array, sizeof(Point2) * newsize);[m
+[31m-}[m
+[31m-[m
+[31m-void TableauRemove(Tableau * tab)[m
+[31m-{[m
+[31m-    tab->size --;[m
+[31m-}[m
+[1mdiff --git a/tableau.h b/tableau.h[m
+[1mdeleted file mode 100644[m
+[1mindex 7f2be7b..0000000[m
+[1m--- a/tableau.h[m
+[1m+++ /dev/null[m
+[36m@@ -1,33 +0,0 @@[m
+[31m-#include "geometrie2d.h"[m
+[31m-[m
+[31m-#define DEFAULT_MAX_SIZE 8[m
+[31m-[m
+[31m-typedef struct Tableau[m
+[31m-{[m
+[31m-    Point2 * array;[m
+[31m-    unsigned size;[m
+[31m-    unsigned max;[m
+[31m-    unsigned char power;[m
+[31m-} Tableau;[m
+[31m-[m
+[31m-[m
+[31m-/* Initialise un tableau*/[m
+[31m-Tableau * InitTableau(void);[m
+[31m-[m
+[31m-/* Ajout d'un point a la fin du tableau*/[m
+[31m-void TableauAppend(Tableau * tab, Point2 a);[m
+[31m-[m
+[31m-/* Avoir la taille du tableau*/[m
+[31m-unsigned TableauGetSize(Tableau * tab);[m
+[31m-[m
+[31m-/* Li√®bre la mamoire du tableau*/[m
+[31m-void TableauFree(Tableau ** tab);[m
+[31m-[m
+[31m-/* Get point2 element from tab*/[m
+[31m-Point2 TableauGetPoint2(Tableau * tab, unsigned index);[m
+[31m-[m
+[31m-/* Remove last element of tab*/[m
+[31m-void TableauRemove(Tableau * tab);[m
+[31m-[m
+[31m-[m
+[31m-[m
+[1mdiff --git a/test_geometrie2d.c b/test_geometrie2d.c[m
+[1mdeleted file mode 100644[m
+[1mindex 54bf071..0000000[m
+[1m--- a/test_geometrie2d.c[m
+[1m+++ /dev/null[m
+[36m@@ -1,142 +0,0 @@[m
+[31m-#include <stdio.h>[m
+[31m-#include <stdlib.h>[m
+[31m-#include "geometrie2d.h"[m
+[31m-[m
+[31m-int main(int argc, char *argv[])[m
+[31m-{[m
+[31m-    printf("\n---Launch of the geometrie2d test program---\n\n");[m
+[31m-[m
+[31m-    if (argc != 5)[m
+[31m-    {[m
+[31m-        printf("invalid argument format, try :\n ./test_geometrie2d Ax Ay Bx By\n");[m
+[31m-    }[m
+[31m-    printf("test vector : \n\n");[m
+[31m-[m
+[31m-    Vector2 *temp = NULL;[m
+[31m-[m
+[31m-    Vector2 *a = SetVector2(atof(argv[1]), atof(argv[2]));[m
+[31m-[m
+[31m-    printf("Create a vector A \n");[m
+[31m-    ShowVector2(a);[m
+[31m-    printf("\n\n");[m
+[31m-    [m
+[31m-[m
+[31m-    Vector2 *b = SetVector2(atof(argv[3]), atof(argv[4]));[m
+[31m-[m
+[31m-    printf("Create a vector B \n");[m
+[31m-    ShowVector2(b);[m
+[31m-    printf("\n\n");[m
+[31m-[m
+[31m-    printf("Dotproduct of A and B is : \n%f \n\n", Dotproduct(a, b));[m
+[31m-[m
+[31m-    /////////////[m
+[31m-[m
+[31m-    printf("Scale 10 time vector A : \n");[m
+[31m-    temp = ScaleVector2(a, 10);[m
+[31m-    ShowVector2(a);[m
+[31m-    printf("\n\n");[m
+[31m-[m
+[31m-    FreeVector2(&temp);[m
+[31m-[m
+[31m-    ///////////[m
+[31m-[m
+[31m-    printf("Sum of A and B :\n");[m
+[31m-    temp = SumVector2(a, b);[m
+[31m-    ShowVector2(temp);[m
+[31m-    printf("\n\n");[m
+[31m-[m
+[31m-    FreeVector2(&temp);[m
+[31m-[m
+[31m-    ///////////[m
+[31m-[m
+[31m-    printf("Norme of A : \n");[m
+[31m-    printf("%f \n\n", Norme(a));[m
+[31m-[m
+[31m-    ///////////[m
+[31m-[m
+[31m-    printf("Normalized A : \n");[m
+[31m-    temp = Normalize(a);[m
+[31m-    ShowVector2(temp);[m
+[31m-    printf("\n\n");[m
+[31m-[m
+[31m-    FreeVector2(&temp);[m
+[31m-[m
+[31m-    ///////////[m
+[31m-[m
+[31m-    printf("X value of vector A : \n");[m
+[31m-    printf("%f \n\n", GetValueVector2(a, 'x'));[m
+[31m-    printf("Y value of vector A : \n");[m
+[31m-    printf("%f \n", GetValueVector2(a, 'y'));[m
+[31m-[m
+[31m-    printf("\n\n");[m
+[31m-[m
+[31m-    FreeVector2(&a);[m
+[31m-    FreeVector2(&b);[m
+[31m-[m
+[31m-    printf("test point : \n\n");[m
+[31m-[m
+[31m-    Point2 * ap = SetPoint2(atof(argv[1]), atof(argv[2]));[m
+[31m-    Point2 * bp = SetPoint2(atof(argv[3]), atof(argv[4]));[m
+[31m-    Point2 * temp2 = NULL;[m
+[31m-[m
+[31m-    printf("create 2 point, A and B \n");[m
+[31m-    ShowPoint2(ap);[m
+[31m-    printf("\n");[m
+[31m-    ShowPoint2(bp);[m
+[31m-    printf("\n\n");[m
+[31m-[m
+[31m-    //////////[m
+[31m-[m
+[31m-    printf("A scale 10 time : \n");[m
+[31m-[m
+[31m-    temp2 = ScalePoint2(ap, 10);[m
+[31m-    ShowPoint2(temp2);[m
+[31m-    printf("\n\n");[m
+[31m-[m
+[31m-    FreePoint2(&temp2);[m
+[31m-[m
+[31m-    ////////////[m
+[31m-    [m
+[31m-    printf("Sum of A and B : \n");[m
+[31m-[m
+[31m-    temp2 = SumPoint2(ap, bp);[m
+[31m-    ShowPoint2(temp2);[m
+[31m-    printf("\n\n");[m
+[31m-[m
+[31m-    FreePoint2(&temp2);[m
+[31m-    [m
+[31m-    /////////[m
+[31m-[m
+[31m-    printf("Distance between A and B :\n%f \n\n", Distance(ap,bp));[m
+[31m-[m
+[31m-    /////////[m
+[31m-[m
+[31m-    printf("Vector AB : \n");[m
+[31m-    temp = Vector2FromPoint2(ap,bp);[m
+[31m-    ShowVector2(temp);[m
+[31m-    printf("\n\n");[m
+[31m-[m
+[31m-    FreeVector2(&temp);[m
+[31m-[m
+[31m-    printf("Vector BA : \n");[m
+[31m-    temp = Vector2FromPoint2(bp,ap);[m
+[31m-    ShowVector2(temp);[m
+[31m-    printf("\n\n");[m
+[31m-[m
+[31m-    FreeVector2(&temp);[m
+[31m-[m
+[31m-    ///////////////[m
+[31m-[m
+[31m-    [m
+[31m-    printf("X value of point A : \n");[m
+[31m-    printf("%f \n\n", GetValuePoint2(ap, 'x'));[m
+[31m-    printf("Y value of point A : \n");[m
+[31m-    printf("%f \n", GetValuePoint2(ap, 'y'));[m
+[31m-[m
+[31m-    printf("\n---End---\n");[m
+[31m-[m
+[31m-    FreePoint2(&ap);[m
+[31m-    FreePoint2(&bp);[m
+[31m-[m
+[31m-[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/test_image b/test_image[m
+[1mnew file mode 100755[m
+[1mindex 0000000..1c9cf30[m
+Binary files /dev/null and b/test_image differ
+[1mdiff --git a/test_image.o b/test_image.o[m
+[1mnew file mode 100644[m
+[1mindex 0000000..6ed9b5d[m
+Binary files /dev/null and b/test_image.o differ
+[1mdiff --git a/vector2.c b/vector2.c[m
+[1mnew file mode 100644[m
+[1mindex 0000000..41d8041[m
+[1m--- /dev/null[m
+[1m+++ b/vector2.c[m
+[36m@@ -0,0 +1,112 @@[m
+[32m+[m[32m#include <stdio.h>[m
+[32m+[m[32m#include <stdlib.h>[m
+[32m+[m[32m#include <math.h>[m
+[32m+[m[32m#include "vector2.h"[m
+[32m+[m
+[32m+[m[32mdouble Dotproduct(Vector2 * a, Vector2 * b)[m
+[32m+[m[32m{[m
+[32m+[m[32m    return (a->x * b->x) + (a->y * b->y);[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mVector2 * ScaleVector2(Vector2 * a, double b)[m
+[32m+[m[32m{[m
+[32m+[m[32m    Vector2 * vect =  InitVector2();[m
+[32m+[m[32m    vect->x = a->x *b;[m
+[32m+[m[32m    vect->y = a->y * b;[m
+[32m+[m[32m    return vect;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mPoint2 * ScalePoint2(Point2 * a, double b)[m
+[32m+[m[32m{[m
+[32m+[m[32m    Point2 * pt =  InitPoint2();[m
+[32m+[m[32m    pt->x = a->x *b;[m
+[32m+[m[32m    pt->y = a->y * b;[m
+[32m+[m[32m    return pt;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mPoint2 * SumPoint2(Point2 *a, Point2 *b)[m
+[32m+[m[32m{[m
+[32m+[m[32m    Point2 *pt = InitPoint2();[m
+[32m+[m[32m    pt->x = a->x + b->x;[m
+[32m+[m[32m    pt->y = a->y + b->y;[m
+[32m+[m[32m    return pt;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mVector2 * SumVector2(Vector2 *a, Vector2 *b)[m
+[32m+[m[32m{[m
+[32m+[m[32m    Vector2 *vect = InitVector2();[m
+[32m+[m[32m    vect->x = a->x + b->x;[m
+[32m+[m[32m    vect->y = a->y + b->y;[m
+[32m+[m[32m    return vect;[m
+[32m+[m[32m}[m
+[32m+[m[32mVector2 * InitVector2()[m
+[32m+[m[32m{[m
+[32m+[m[32m    return malloc(sizeof(Vector2));[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mdouble Distance(Point2 *a, Point2 *b)[m
+[32m+[m[32m{[m
+[32m+[m[32m    return sqrt(pow(b->x - a->x, 2) + pow(b->y -a->y, 2));[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mVector2 * Vector2FromPoint2(Point2 * a, Point2*  b)[m
+[32m+[m[32m{[m
+[32m+[m[32m    Vector2 * vect = InitVector2();[m
+[32m+[m[32m    vect->x = b->x - a->x;[m
+[32m+[m[32m    vect->y = b->y - a->y;[m
+[32m+[m[32m    return vect;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m/*Create a vector from 2 double*/[m
+[32m+[m[32mVector2 * SetVector2(double x, double y)[m
+[32m+[m[32m{[m
+[32m+[m[32m    Vector2 * vect = InitVector2();[m
+[32m+[m[32m    vect->x = x;[m
+[32m+[m[32m    vect->y = y;[m
+[32m+[m[32m    return vect;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m/*Create a point from 2 double*/[m
+[32m+[m[32mPoint2 * SetPoint2(double x, double y)[m
+[32m+[m[32m{[m
+[32m+[m[32m    Point2 * pt = InitPoint2();[m
+[32m+[m[32m    pt->x = x;[m
+[32m+[m[32m    pt->y = y;[m
+[32m+[m[32m    return pt;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32mPoint2 * InitPoint2()[m
+[32m+[m[32m{[m
+[32m+[m[32m    return malloc(sizeof(Point2));[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mdouble Norme(Vector2 * a)[m
+[32m+[m[32m{[m
+[32m+[m[32m    return sqrt(pow(a->x, 2) + pow(a->y, 2));[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mVector2 * Normalize(Vector2 *a)[m
+[32m+[m[32m{[m
+[32m+[m[32m    Vector2 * vect = InitVector2();[m
+[32m+[m[32m    double norme = Norme(a);[m
+[32m+[m[32m    vect->x = a->x / norme;[m
+[32m+[m[32m    vect->y = a->y / norme;[m
+[32m+[m[32m    return vect;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m[32mvoid FreeVector2(Vector2 ** a)[m
+[32m+[m[32m{[m
+[32m+[m[32m    free(*a);[m
+[32m+[m[32m    *a = NULL;[m
+[32m+[m[32m}[m
+[32m+[m[32mvoid FreePoint2(Point2 ** a)[m
+[32m+[m[32m{[m
+[32m+[m[32m    free(*a);[m
+[32m+[m[32m    *a = NULL;[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/vector2.h b/vector2.h[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e889df0[m
+[1m--- /dev/null[m
+[1m+++ b/vector2.h[m
+[36m@@ -0,0 +1,51 @@[m
+[32m+[m
+[32m+[m
+[32m+[m[32mtypedef struct Vector2[m
+[32m+[m[32m{[m
+[32m+[m[32m    double x;[m
+[32m+[m[32m    double y;[m
+[32m+[m[32m} Vector2;[m
+[32m+[m
+[32m+[m[32mtypedef struct Point2[m
+[32m+[m[32m{[m
+[32m+[m[32m    double x;[m
+[32m+[m[32m    double y;[m
+[32m+[m[32m} Point2;[m
+[32m+[m
+[32m+[m[32mdouble Dotproduct(Vector2 * a, Vector2 * b);[m
+[32m+[m
+[32m+[m[32mVector2 * ScaleVector2(Vector2 * a, double b);[m
+[32m+[m[32mPoint2 * ScalePoint2(Point2 * a, double b);[m
+[32m+[m
+[32m+[m
+[32m+[m[32mVector2 * SumVector2(Vector2 * a, Vector2 * b);[m
+[32m+[m[32mPoint2 * SumPoint2(Point2 *a, Point2 *b);[m
+[32m+[m
+[32m+[m[32m/*Malloc un Vector2*/[m
+[32m+[m[32mVector2 * InitVector2(void);[m
+[32m+[m
+[32m+[m[32m/*Malloc un Point2*/[m
+[32m+[m[32mPoint2 * InitPoint2(void);[m
+[32m+[m
+[32m+[m[32m/*Calculate euclidien norme*/[m
+[32m+[m[32mdouble Norme(Vector2 * a);[m
+[32m+[m
+[32m+[m[32mdouble Distance(Point2 *a, Point2 *b);[m
+[32m+[m
+[32m+[m[32m/*Create a vector of norm 1*/[m
+[32m+[m[32mVector2 * Normalize(Vector2 * a);[m
+[32m+[m
+[32m+[m[32m/*Free struc and set it to NULL*/[m
+[32m+[m[32mvoid FreeVector2(Vector2 ** a);[m
+[32m+[m[32m/*Free struc and set it to NULL*/[m
+[32m+[m[32mvoid FreePoint2(Point2 ** a);[m
+[32m+[m
+[32m+[m[32m/*Create a Vector2 from 2 Point2*/[m
+[32m+[m[32mVector2 * Vector2FromPoint2(Point2 * a, Point2*  b);[m
+[32m+[m
+[32m+[m[32m/*Create a vector from 2 double*/[m
+[32m+[m[32mVector2 * SetVector2(double x, double y);[m
+[32m+[m
+[32m+[m[32m/*Create a point from 2 double*/[m
+[32m+[m[32mPoint2 * SetPoint2(double x, double y);[m
+[32m+[m
+[1mdiff --git a/vgcore.339179 b/vgcore.339179[m
+[1mdeleted file mode 100644[m
+[1mindex f3a48eb..0000000[m
+Binary files a/vgcore.339179 and /dev/null differ
