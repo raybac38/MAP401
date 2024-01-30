@@ -14,6 +14,12 @@ typedef struct Point2
 
 double Dotproduct(Vector2 * a, Vector2 * b);
 
+/*Copy Point 2*/
+Point2 * CopyPoint2(Point2 a);
+
+/*Copy Vector 2*/
+Vector2 * CopyVector2(Vector2 a);
+
 /*Create a scaled Vector2*/
 Vector2 * ScaleVector2(Vector2 * a, double b);
 

@@ -111,7 +111,23 @@ void FreePoint2(Point2 ** a)
     *a = NULL;
 }
 
+/*Copy Point 2*/
+Point2 * CopyPoint2(Point2 a)
+{
+    Point2 * newpoint = InitPoint2();
+    newpoint->x = a.x;
+    newpoint->y = a.y;
+    return newpoint;
+}
 
+/*Copy Vector 2*/
+Vector2 * CopyVector2(Vector2 a)
+{
+    Vector2 * newvector = InitVector2();
+    newvector->x = a.x;
+    newvector->y = a.y;
+    return newvector;
+}
 /*Get value of a Vector2*/
 double GetValueVector2(Vector2 * a, char coord)
 {
