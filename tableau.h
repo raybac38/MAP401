@@ -1,3 +1,6 @@
+#ifndef TABLEAU_H
+#define TEBLEAU_H
+
 #include "geometrie2d.h"
 
 #define DEFAULT_MAX_SIZE 8
@@ -29,5 +32,6 @@ Point2 TableauGetPoint2(Tableau * tab, unsigned index);
 /* Remove last element of tab*/
 void TableauRemove(Tableau * tab);
 
+#endif
 
 

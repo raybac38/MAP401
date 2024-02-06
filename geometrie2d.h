@@ -1,4 +1,5 @@
-
+#ifndef _GEOMETRIE2D_H_
+#define _GEOMETRIE2D_H_
 
 typedef struct Vector2
 {
@@ -80,3 +81,4 @@ unsigned IsPoint2Equal(Point2 a, Point2 b);
 /*is two Vector2 equal ?*/
 unsigned IsVector2Equal(Vector2 a, Vector2 b);
 
+#endif

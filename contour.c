@@ -3,6 +3,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+/* 
+Declaration des fonction ici pour ne pas noyer les script 
+et le header qui n'ont de porter que local
+*/
+
+void NuttNuttNextStep(NuttyNoodler * nuttnutt);
+Point2 NuttNuttDoReport(NuttyNoodler * nuttnutt);
+void TurnNuttyNoodler(NuttyNoodler * nuttnutt, unsigned angle);
+Pixel GetNuttNuttLeftPixelValue(NuttyNoodler * nuttnutt);
+Pixel GetNuttNuttRightPixelValue(NuttyNoodler * nuttnutt);
+NuttyNoodler * InitNuttyNoodler(unsigned int stratingx, unsigned int stratingy);
+void NuttNuttGoForward(NuttyNoodler * nuttnutt);
+
+
 /*  Add outline point at the end of points*/
 void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int startingy, Image * img)
 {
@@ -133,13 +148,14 @@ void NuttNuttGoForward(NuttyNoodler * nuttnutt)
     }
 }
 
-/* Make a new nuttnutt ^^*/
+/* Make a new nuttnutt ^^
+ She like stalin, so she always start forwarding Est*/
 NuttyNoodler * InitNuttyNoodler(unsigned int stratingx, unsigned int stratingy)
 {
     NuttyNoodler * nuttnutt = (NuttyNoodler *)malloc(sizeof(NuttyNoodler));
     nuttnutt->x = stratingx;
     nuttnutt->y = stratingy;
-    nuttnutt->orientation;
+    nuttnutt->orientation = Est;
     return nuttnutt;
 }
 

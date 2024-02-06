@@ -1,3 +1,6 @@
+#ifndef _CONTOUR_H_
+#define _CONTOUR_H_
+
 #include <stdio.h>
 #include <image.h>
 #include "tableau.h"
@@ -23,3 +26,4 @@ typedef struct NuttyNoodler
 void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int startingy, Image * img);
 
 
+#endif
