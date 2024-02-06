@@ -84,10 +84,17 @@ test_image.o: test_image.c image.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 
-test_geometrie2d.o : test_geometrie2d.c geometrie2d.h 
+#test_geometrie2d.o : test_geometrie2d.c geometrie2d.h 
+#	@echo ""
+#	@echo "---------------------------------------------"
+#	@echo "Compilation du module test_geometrie2d"
+#	@echo "---------------------------------------------"
+#	$(CC) -c $(COMPILOPTS) $< -o $@
+
+contour.o : contour.c contour.h 
 	@echo ""
 	@echo "---------------------------------------------"
-	@echo "Compilation du module test_geometrie2d"
+	@echo "Compilation du module contour"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 		

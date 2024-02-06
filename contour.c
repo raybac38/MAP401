@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-Tableau GetOutline(unsigned int stratingx, unsigned int startingy, Image * img)
+/*  Add outline point at the end of points*/
+void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int startingy, Image * img)
 {
     NuttyNoodler nuttnutt;
     nuttnutt.orientation = Est;
@@ -14,7 +14,6 @@ Tableau GetOutline(unsigned int stratingx, unsigned int startingy, Image * img)
 
     Point2 StartingPoint2 = SetPoint2(stratingx, startingy);
 
-    Tableau * outline = InitTableau();
     TableauAppend(outline, StartingPoint2);
 
     Point2 lastPosition;
