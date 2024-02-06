@@ -11,21 +11,61 @@ Tableau GetOutline(unsigned int stratingx, unsigned int startingy, Image * img)
     nuttnutt.x = stratingx;
     nuttnutt.y = startingy;
     nuttnutt.img = img;
+
+    Point2 StartingPoint2 = SetPoint2(stratingx, startingy);
+
+    Tableau * outline = InitTableau();
+    TableauAppend(outline, StartingPoint2);
+
+    Point2 lastPosition;
     do
     {
-        
-    } while (/* condition */);
+	    NuttNuttNextStep(&nuttnutt);
+        lastPosition = NuttNuttDoReport(&nuttnutt);
+        TableauAppend(outline, lastPosition);
+
+    } while (0 == IsPoint2Equal(lastPosition, StartingPoint2));
     
     
 }
 
+/* NuttNutt is very calm, she only walk step by step*/
 void NuttNuttNextStep(NuttyNoodler * nuttnutt)
 {
     Pixel left = GetNuttNuttLeftPixelValue(nuttnutt);
     Pixel right = GetNuttNuttRightPixelValue(nuttnutt);
 
+    if(left == NOIR)
+    {
+        TurnNuttyNoodler(nuttnutt, 270);
+    }
+    else if(right == BLANC)
+    {
+        TurnNuttyNoodler(nuttnutt, 90);
+    }
+    
+    NuttNuttGoForward(nuttnutt);
 }
 
+/* NuttNutt say where she is*/
+Point2 NuttNuttDoReport(NuttyNoodler * nuttnutt)
+{
+    /// Where are you my sweet nuttnutt ? You miss me !
+    return SetPoint2(nuttnutt->x, nuttnutt->y);
+}
+
+/* Permet a NuttyNoodler de tourne dans le sens ANTI TRIGONOMETRIQUE*/
+void TurnNuttyNoodler(NuttyNoodler * nuttnutt, unsigned angle)
+{
+    Orientation orient = nuttnutt->orientation;
+    unsigned orientationNumber = (unsigned)orient;
+
+    orientationNumber = (orientationNumber + (unsigned)(angle/ 90)) % 4;
+
+    nuttnutt->orientation = (Orientation)orientationNumber;
+}
+
+/* Get NuttNutt relative forward left pixel value*/
 Pixel GetNuttNuttLeftPixelValue(NuttyNoodler * nuttnutt)
 {
     unsigned int x= nuttnutt->x;
@@ -48,6 +88,7 @@ Pixel GetNuttNuttLeftPixelValue(NuttyNoodler * nuttnutt)
     return get_pixel_image(*(nuttnutt->img), x, y);
 }
 
+/* Get NuttNutt relative forward right pixel value*/
 Pixel GetNuttNuttRightPixelValue(NuttyNoodler * nuttnutt)
 {
     unsigned int x= nuttnutt->x;
@@ -70,6 +111,7 @@ Pixel GetNuttNuttRightPixelValue(NuttyNoodler * nuttnutt)
     return get_pixel_image(*(nuttnutt->img), x, y);
 }
 
+/* Make nuttnutt go forward*/
 void NuttNuttGoForward(NuttyNoodler * nuttnutt)
 {
     switch (nuttnutt->orientation)
@@ -92,6 +134,7 @@ void NuttNuttGoForward(NuttyNoodler * nuttnutt)
     }
 }
 
+/* Make a new nuttnutt ^^*/
 NuttyNoodler * InitNuttyNoodler(unsigned int stratingx, unsigned int stratingy)
 {
     NuttyNoodler * nuttnutt = (NuttyNoodler *)malloc(sizeof(NuttyNoodler));
@@ -100,4 +143,6 @@ NuttyNoodler * InitNuttyNoodler(unsigned int stratingx, unsigned int stratingy)
     nuttnutt->orientation;
     return nuttnutt;
 }
+
+
 
