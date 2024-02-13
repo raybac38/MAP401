@@ -4,6 +4,7 @@
 #include "tableau.h"
 #include "geometrie2d.h"
 
+void TableauIncreaseSize(Tableau * tab);
 
 /* Initialise un tableau*/
 Tableau * InitTableau()

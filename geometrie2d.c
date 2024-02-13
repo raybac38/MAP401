@@ -169,3 +169,15 @@ void ShowPoint2(Point2  a)
     printf("Point (%f, %f)", a.x, a.y);
 }
 
+
+/*is two Point2 equal ?*/
+unsigned IsPoint2Equal(Point2 a, Point2 b)
+{
+    return (a.x == b.x) && (a.y == b.y);
+}
+
+/*is two Vector2 equal ?*/
+unsigned IsVector2Equal(Vector2 a, Vector2 b)
+{
+    return (a.x == b.x) && (a.y == b.y);
+}

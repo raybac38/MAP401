@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include "contour.h"
+#include "geometrie2d.h"
+#include "image.h"
+
+
+
+///Prend un fichier et print la liste de ces contours dans le terminal
+
+int main(int argc, char * argv[])
+{
+    if(argc != 2)
+    {
+        printf("pas assez d'argument, pas assez convainquant !\n");
+        exit(EXIT_FAILURE);
+    }
+
+    Image img = lire_fichier_image(argv[1]);
+    Tableau * outline = InitTableau();
+
+    unsigned largeur = largeur_image(img);
+    unsigned hauteur = hauteur_image(img);
+
+    unsigned i;
+    unsigned j;
+
+    bool outlineDetected = false;
+
+    Pixel p;
+    Pixel pup;
+    
+    for (j = 1; j <= hauteur; j++)
+    {
+        for (i = 1; i <=largeur ; i++)
+        {
+            printf("%d", i);
+            p = get_pixel_image(img, i, j);
+            pup = get_pixel_image(img, i, j -1);
+            if(p == NOIR && pup == BLANC)
+            {
+                outlineDetected = true;
+                GetOutline(outline, i - 1, j - 1, &img);
+            }
+            if(outlineDetected) break;
+        }
+        if(outlineDetected) break;
+    }
+    if(!outlineDetected)
+    {
+        printf("pas de contours detecter\n");
+        exit(EXIT_SUCCESS);
+    }
+    else
+    {
+        printf("contour detecter ! \n");
+        unsigned i;
+        unsigned nombre_point = TableauGetSize(outline);
+        for (i = 0; i < nombre_point; i++)
+        {
+            ShowPoint2(TableauGetPoint2(outline, i));
+        }
+
+        printf("fin des points du contours \n");
+
+        exit(EXIT_SUCCESS);
+        
+    }
+    
+}
