@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geometrie2d
+EXECUTABLES = test_image test_contour
 
 
 #############################################################################
@@ -84,14 +84,33 @@ test_image.o: test_image.c image.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 
-test_geometrie2d.o : test_geometrie2d.c geometrie2d.h 
+#test_geometrie2d.o : test_geometrie2d.c geometrie2d.h 
+#	@echo ""
+#	@echo "---------------------------------------------"
+#	@echo "Compilation du module test_geometrie2d"
+#	@echo "---------------------------------------------"
+#	$(CC) -c $(COMPILOPTS) $< -o $@
+
+contour.o : contour.c contour.h 
 	@echo ""
 	@echo "---------------------------------------------"
-	@echo "Compilation du module test_geometrie2d"
+	@echo "Compilation du module contour"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 		
-		
+tableau.o : tableau.c tableau.h 
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module tableau"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@		
+
+test_contour.o : test_contour.c contour.h geometrie2d.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_contour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@			
 ########################################################
 # regles explicites de creation des executables
 
@@ -102,7 +121,14 @@ test_image : test_image.o image.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-test_geometrie2d : test_geometrie2d.o geometrie2d.o 
+#test_geometrie2d : test_geometrie2d.o geometrie2d.o 
+#	@echo ""
+#	@echo "---------------------------------------------"
+#	@echo "Creation de l'executable "$@
+#	@echo "---------------------------------------------"
+#	$(CC) $^ $(LDOPTS) -o $@
+
+test_contour : test_contour.o contour.o geometrie2d.o tableau.o image.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

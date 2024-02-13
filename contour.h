@@ -1,3 +1,6 @@
+#ifndef _CONTOUR_H_
+#define _CONTOUR_H_
+
 #include <stdio.h>
 #include <image.h>
 #include "tableau.h"
@@ -6,7 +9,7 @@
 
 /* Humans' Best Friends and Image Outlines
 
-In her life, Nutty Noodle has only one goal, to find an outline and to be happy :)
+In her life, Nutty Noodle has only two goal, to find an outline and to be happy :)
 Her little name is Nuttnutt ^^
 */
 
@@ -15,9 +18,12 @@ typedef struct NuttyNoodler
     unsigned int x;
     unsigned int y;
     Orientation orientation;
+    Image * img;
+    Image * mask;
 }NuttyNoodler;
 
 /* Calculate a outline from a correct strating point*/
-Tableau GetOutline(unsigned int stratingx, unsigned int startingy, Image * img);
+void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int startingy, Image * img);
 
 
+#endif

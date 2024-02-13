@@ -2,11 +2,11 @@
   declaration de differents types et macros
 ******************************************************************************/
  
+#ifndef _TYPES_MACROS_H_
+#define _TYPES_MACROS_H_
 
 typedef enum {Nord, Est, Sud, Ouest} Orientation;
 
-#ifndef _TYPES_MACROS_H_
-#define _TYPES_MACROS_H_
 
 #include <stdio.h>
 #include <stdlib.h>

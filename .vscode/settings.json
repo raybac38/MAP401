@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "vector2.h": "c",
-        "geometrie2d.h": "c"
+        "geometrie2d.h": "c",
+        "types_macros.h": "c",
+        "tableau.h": "c"
     }
 }
