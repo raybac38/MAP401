@@ -1,5 +1,4 @@
-#include "contour.h"
-#include <stdio.h>
+#include "multi_contour.h"
 
 /*
 But de ce script :
