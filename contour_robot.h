@@ -1,0 +1,1 @@
+typedef enum {Nord, Est, Sud, Ouest} Orientation;
