@@ -1,5 +1,5 @@
 #ifndef TABLEAU_H
-#define TEBLEAU_H
+#define TABLEAU_H
 
 #include "geometrie2d.h"
 

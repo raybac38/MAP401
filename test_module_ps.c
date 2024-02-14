@@ -1,11 +1,11 @@
-#include "contour.h"
+#include "multi_contour.h"
 #include "module_ps.h"
 
 int main(int argc, char * argv[])
 {
-    if(argc != 2)
+    if(argc != 3)
     {
-        printf("pas assez convainquant, donnez de bon argument !\n ./this <fichier image>\n");
+        printf("pas assez convainquant, donnez de bon argument !\n ./this <fichier image> <out file>\n");
         exit(EXIT_FAILURE);
     }
     
@@ -14,7 +14,12 @@ int main(int argc, char * argv[])
 
     Image img = lire_fichier_image(argv[1]);
 
-    Tableau * tab = InitTableau();
+    Tableau * outline = InitTableau();
+    Tableau * start = InitTableau();
+
+    ExtractAllOutline(outline, start, img);
+
+    sortie_fichier(*outline, argv[2]);
 
    
 

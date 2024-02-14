@@ -12,6 +12,8 @@ void sortie_fichier(Tableau  xy_image, char* name) {
     int i,cx,cy; 
     FILE *fichier;
 
+    name = strcat(name, ".ps\0");
+
     fichier = fopen(name, "w"); // Ouvre le fichier en écriture
     
     if (fichier == NULL) {
@@ -28,11 +30,11 @@ void sortie_fichier(Tableau  xy_image, char* name) {
         cy = c.y;
    
         if (i == 0) {
-            fprintf(fichier, "%lf %lf moveto", cx, cy);
+            fprintf(fichier, "%d %d moveto", cx, cy);
             //moveto sur le fichier avec coord
         }
         else{
-            fprintf(fichier, "%lf %lf lineto", cx, cy);
+            fprintf(fichier, "%d %d lineto", cx, cy);
             if (((i+1)%3)==0) {
                 fprintf(fichier, "\n");
             }

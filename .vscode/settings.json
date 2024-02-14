@@ -4,6 +4,9 @@
         "geometrie2d.h": "c",
         "types_macros.h": "c",
         "tableau.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "module_ps.h": "c",
+        "multi_contour.h": "c",
+        "contour.h": "c"
     }
 }

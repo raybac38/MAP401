@@ -1,7 +1,5 @@
 #include "contour.h"
 
-#include <stdio.h>
-#include <stdlib.h>
 
 
 /* 

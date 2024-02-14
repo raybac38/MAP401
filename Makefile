@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_contour test_mask_img
+EXECUTABLES = test_image test_contour test_mask_img test_module_ps
 
 
 #############################################################################
@@ -125,6 +125,20 @@ test_contour.o : test_contour.c contour.h geometrie2d.h image.h
 	@echo "Compilation du module test_contour"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@			
+
+module_ps.o : module_ps.c module_ps.h tableau.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module module_ps"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@			
+	
+test_module_ps.o : test_module_ps.c module_ps.h tableau.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_module_ps"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@	
 ########################################################
 # regles explicites de creation des executables
 
@@ -150,6 +164,13 @@ test_contour : test_contour.o contour.o geometrie2d.o tableau.o image.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 test_mask_img : test_mask_img.o multi_contour.o contour.o geometrie2d.o tableau.o image.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_module_ps : test_module_ps.o module_ps.o multi_contour.o contour.o geometrie2d.o tableau.o image.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
