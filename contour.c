@@ -17,7 +17,7 @@ void NuttNuttGoForward(NuttyNoodler * nuttnutt);
 
 
 /*  Add outline point at the end of points*/
-void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int startingy, Image * img)
+void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int startingy, Image * img, Image * mask)
 {
     NuttyNoodler nuttnutt;
     nuttnutt.orientation = Est;
@@ -34,12 +34,16 @@ void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int starting
     {
 	    NuttNuttNextStep(&nuttnutt);
         lastPosition = NuttNuttDoReport(&nuttnutt);
+        
         TableauAppend(outline, lastPosition);
+
 
     } while (0 == IsPoint2Equal(lastPosition, StartingPoint2));
     
     
 }
+
+
 
 /* NuttNutt is very calm, she only walk step by step*/
 void NuttNuttNextStep(NuttyNoodler * nuttnutt)

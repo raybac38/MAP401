@@ -35,9 +35,9 @@ void ExtractAllOutline(Tableau * outlines, Tableau * start, Image img)
 
     Pixel p;
 
-    for (i = 0; i < largeur; i++)
+    for (i = 1; i <= largeur; i++)
     {
-        for (j = 0; j < hauteur; j++)
+        for (j = 1; j <= hauteur; j++)
         {
             p = get_pixel_image(mask, i, j);
             if(p == NOIR)
