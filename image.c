@@ -1,39 +1,39 @@
-/****************************************************************************** 
+/******************************************************************************
   Implementation du module image_pbm
 ******************************************************************************/
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include"types_macros.h"
-#include"image.h"
+#include <stdio.h>
 
-/* macro donnant l'indice du pixel de coordonnees (_x,_y) de l'image _I 
+#include <stdlib.h>
+#include <string.h>
+#include "image.h"
+
+/* macro donnant l'indice du pixel de coordonnees (_x,_y) de l'image _I
    dans le tableau de pixels de l'image _I */
-#define INDICE_PIXEL(_I,_x,_y) ((_x)-1)+(_I).la_largeur_de_l_image*((_y)-1)
+#define INDICE_PIXEL(_I, _x, _y) ((_x)-1) + (_I).la_largeur_de_l_image *((_y)-1)
 
 /* creation d'une image PBM de dimensions L x H avec tous les pixels blancs */
 Image creer_image(UINT L, UINT H)
 {
 	Image I;
 	UINT i;
-	
+
 	I.la_largeur_de_l_image = L;
 	I.la_hauteur_de_l_image = H;
-	
+
 	/* allocation dynamique d'un tableau de L*H Pixel*/
-	I.pointeur_vers_le_tableau_de_pixels = (Pixel *)malloc(sizeof(Pixel)*L*H);
-	
+	I.pointeur_vers_le_tableau_de_pixels = (Pixel *)malloc(sizeof(Pixel) * L * H);
+
 	/* test si le tableau a ete correctement alloue */
 	if (I.pointeur_vers_le_tableau_de_pixels == (Pixel *)NULL)
 	{
 		ERREUR_FATALE("Impossible de creer une image");
 	}
-	
+
 	/* remplir le tableau avec des pixels blancs */
-	for (i=0; i<L*H; i++)
+	for (i = 0; i < L * H; i++)
 		I.pointeur_vers_le_tableau_de_pixels[i] = BLANC;
-		
+
 	return I;
 }
 
@@ -49,18 +49,18 @@ void supprimer_image(Image *p_I)
    si (x,y) est hors de l'image la fonction renvoie BLANC */
 Pixel get_pixel_image(Image I, int x, int y)
 {
-	if (x<1 || x>I.la_largeur_de_l_image || y<1 || y>I.la_hauteur_de_l_image)
+	if (x < 1 || x > I.la_largeur_de_l_image || y < 1 || y > I.la_hauteur_de_l_image)
 		return BLANC;
-	return I.pointeur_vers_le_tableau_de_pixels[INDICE_PIXEL(I,x,y)];
+	return I.pointeur_vers_le_tableau_de_pixels[INDICE_PIXEL(I, x, y)];
 }
 
 /* change la valeur du pixel (x,y) de l'image I avec la valeur v
    si (x,y) est hors de l'image la fonction ne fait rien */
 void set_pixel_image(Image I, int x, int y, Pixel v)
 {
-	if (x<1 || x>I.la_largeur_de_l_image || y<1 || y>I.la_hauteur_de_l_image)
+	if (x < 1 || x > I.la_largeur_de_l_image || y < 1 || y > I.la_hauteur_de_l_image)
 		return;
-	I.pointeur_vers_le_tableau_de_pixels[INDICE_PIXEL(I,x,y)] = v;
+	I.pointeur_vers_le_tableau_de_pixels[INDICE_PIXEL(I, x, y)] = v;
 }
 
 /* renvoie la largeur de l'image I */
@@ -75,11 +75,10 @@ UINT hauteur_image(Image I)
 	return I.la_hauteur_de_l_image;
 }
 
-
 /* lire l'image dans le fichier nomme nom_f
    s'il y a une erreur dans le fichier le programme s'arrete en affichant
-   un message 
-   version acceptant les fichiers avec 
+   un message
+   version acceptant les fichiers avec
    - ligne 1 : P1
    - zero, une ou plusieurs lignes commen�ant toutes par #
    - zero, un ou plusieurs separateurs
@@ -94,11 +93,11 @@ UINT hauteur_image(Image I)
    valide pour un fichier PBM :
    - ligne 1 : P1
    - suivie de zero, une ou plusieurs lignes commen�ant toutes par #
-   La fonction se termine correctement si le fichier est correct, 
+   La fonction se termine correctement si le fichier est correct,
    et le pointeur de fichier se trouve � la suite de l'entete.
    Sinon, l'execution du programme est arretee avec l'affichage d'un message
    d'erreur (appel � ERREUR_FATALE)
-    */ 
+	*/
 void entete_fichier_pbm(FILE *f)
 {
 	char *ligne;
@@ -107,17 +106,17 @@ void entete_fichier_pbm(FILE *f)
 
 	/* se positionner en debut de fichier */
 	fseek(f, 0, SEEK_SET);
-	
+
 	/* lecture et test de la ligne 1 */
 	ligne = (char *)NULL;
 	n = 0;
 	l_ligne = getline(&ligne, &n, f);
-	
-	/* la ligne est correcte si et ssi 
-	   cas - fichier cree sous Linux : ligne = {'P','1',10} 
-	     soit une chaine de 3 caracteres (le dernier est le caractere nul) 
-	   cas - fichier cree sous Windows : ligne = {'P','1',13, 10} 
-	     soit une chaine de 4 caracteres (le dernier est le caractere nul) 
+
+	/* la ligne est correcte si et ssi
+	   cas - fichier cree sous Linux : ligne = {'P','1',10}
+		 soit une chaine de 3 caracteres (le dernier est le caractere nul)
+	   cas - fichier cree sous Windows : ligne = {'P','1',13, 10}
+		 soit une chaine de 4 caracteres (le dernier est le caractere nul)
 	   */
 	if (l_ligne < 3)
 	{
@@ -128,7 +127,7 @@ void entete_fichier_pbm(FILE *f)
 		ERREUR_FATALE("entete_fichier_pbm : ligne 1 incorrecte\n");
 	}
 	free(ligne);
-	
+
 	/* lecture des eventuelles lignes commen�ant par # */
 	bool boucle_ligne_commentaire = true;
 	do
@@ -138,11 +137,11 @@ void entete_fichier_pbm(FILE *f)
 		{
 			ERREUR_FATALE("entete_fichier_pbm : fin fichier inattendue\n");
 		}
-		
+
 		/* lire un caractere et tester par rapport � '#' */
 		char c;
 		fscanf(f, "%c", &c);
-		if (c=='#')
+		if (c == '#')
 		{
 			/* lire le reste de la ligne */
 			ligne = (char *)NULL;
@@ -157,30 +156,29 @@ void entete_fichier_pbm(FILE *f)
 			boucle_ligne_commentaire = false;
 		}
 	} while (boucle_ligne_commentaire);
-	
 }
-  
+
 /* lire l'image dans le fichier nomme nom_f
    s'il y a une erreur dans le fichier le programme s'arrete en affichant
    un message */
 Image lire_fichier_image(char *nom_f)
 {
 	FILE *f;
-	UINT L,H;
-	UINT x,y;
+	UINT L, H;
+	UINT x, y;
 	int res_fscanf;
 	Image I;
-	
+
 	/* ouverture du fichier nom_f en lecture */
 	f = fopen(nom_f, "r");
 	if (f == (FILE *)NULL)
 	{
 		ERREUR_FATALE("lire_fichier_image : ouverture du fichier impossible\n");
 	}
-	
+
 	/* traitement de l'en-tete et arret en cas d'erreur */
 	entete_fichier_pbm(f);
-	
+
 	/* lecture des dimensions */
 	res_fscanf = fscanf(f, "%d", &L);
 	if (res_fscanf != 1)
@@ -192,19 +190,20 @@ Image lire_fichier_image(char *nom_f)
 	{
 		ERREUR_FATALE("lire_fichier_image : dimension H incorrecte\n");
 	}
-	
+
 	/* creation de l'image de dimensions L x H */
-	I = creer_image(L,H);
-	
-	/* lecture des pixels du fichier 
-	   seuls les caracteres '0' (BLANC) ou '1' (NOIR) 
+	I = creer_image(L, H);
+
+	/* lecture des pixels du fichier
+	   seuls les caracteres '0' (BLANC) ou '1' (NOIR)
 	   doivent etre pris en compte */
-	x = 1; y = 1;
-	while (!feof(f) && y<=H)
+	x = 1;
+	y = 1;
+	while (!feof(f) && y <= H)
 	{
 		char c;
 		int res = ' ';
-		
+
 		/* lire un caractere en passant les caracteres differents de '0' et '1' */
 		res = fscanf(f, "%c", &c);
 		while (!feof(f) && !(c == '0' || c == '1'))
@@ -213,18 +212,19 @@ Image lire_fichier_image(char *nom_f)
 		}
 		if (!feof(f))
 		{
-			set_pixel_image(I,x,y,c=='1' ? NOIR : BLANC );
+			set_pixel_image(I, x, y, c == '1' ? NOIR : BLANC);
 			x++;
-			if (x>L)
+			if (x > L)
 			{
-				x = 1; y++;
+				x = 1;
+				y++;
 			}
 		}
-	}   
-	
+	}
+
 	/* fermeture du fichier */
 	fclose(f);
-	
+
 	return I;
 }
 
@@ -234,27 +234,25 @@ void ecrire_image(Image I)
 	UINT largeur = largeur_image(I);
 	UINT hauteur = hauteur_image(I);
 
-    printf("\n--- Impression Image ---\n\n");
-	
-    Pixel pix;
-    for (UINT j = 1; j <= hauteur; j++)
-    {
-        for (UINT i = 1; i <= largeur; i++)
-        {
-            pix = get_pixel_image(I, i, j);
-            if(pix == BLANC)
-            {
-                printf(".");
-            }
-            else
-            {
-                printf("#");
-            }
-        }
-        printf("\n");
-    }
-    
-	
+	printf("\n--- Impression Image ---\n\n");
+
+	Pixel pix;
+	for (UINT j = 1; j <= hauteur; j++)
+	{
+		for (UINT i = 1; i <= largeur; i++)
+		{
+			pix = get_pixel_image(I, i, j);
+			if (pix == BLANC)
+			{
+				printf(".");
+			}
+			else
+			{
+				printf("#");
+			}
+		}
+		printf("\n");
+	}
 }
 
 /* calculer l'image "negatif" de l'image I */
@@ -265,23 +263,22 @@ Image negatif_image(Image I)
 	UINT largeur = largeur_image(I);
 	UINT hauteur = hauteur_image(I);
 
-    Pixel pix;
-    for(UINT j = 1; j <= hauteur ; j++)
-    {
-        for (UINT i = 1; i <= largeur ; i++)
-        {
-            pix = get_pixel_image(I, i, j);
-            if(pix == BLANC)
-            {
-                set_pixel_image(I, i, j, NOIR);
-            }
-            else
-            {
-                set_pixel_image(I, i, j, BLANC);
-            }
-        }
-    }
-    
-    return I;
-	
+	Pixel pix;
+	for (UINT j = 1; j <= hauteur; j++)
+	{
+		for (UINT i = 1; i <= largeur; i++)
+		{
+			pix = get_pixel_image(I, i, j);
+			if (pix == BLANC)
+			{
+				set_pixel_image(I, i, j, NOIR);
+			}
+			else
+			{
+				set_pixel_image(I, i, j, BLANC);
+			}
+		}
+	}
+
+	return I;
 }

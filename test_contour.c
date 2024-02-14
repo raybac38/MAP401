@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "contour.h"
-#include "geometrie2d.h"
+
 #include "image.h"
 
 

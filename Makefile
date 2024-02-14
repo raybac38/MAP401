@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_contour
+EXECUTABLES = test_image test_contour test_mask_img
 
 
 #############################################################################
@@ -97,6 +97,20 @@ contour.o : contour.c contour.h
 	@echo "Compilation du module contour"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
+
+multi_contour.o : multi_contour.c multi_contour.h contour.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module multi_contour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@
+
+test_mask_img.o: test_mask_img.c multi_contour.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_mask_img"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@
 		
 tableau.o : tableau.c tableau.h 
 	@echo ""
@@ -129,6 +143,13 @@ test_image : test_image.o image.o
 #	$(CC) $^ $(LDOPTS) -o $@
 
 test_contour : test_contour.o contour.o geometrie2d.o tableau.o image.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_mask_img : test_mask_img.o multi_contour.o contour.o geometrie2d.o tableau.o image.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "tableau.h"
-#include "geometrie2d.h"
+
 
 void TableauIncreaseSize(Tableau * tab);
 

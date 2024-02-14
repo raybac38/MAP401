@@ -42,7 +42,7 @@ void ExtractAllOutline(Tableau * outlines, Tableau * start, Image img)
             p = get_pixel_image(mask, i, j);
             if(p == NOIR)
             {
-                GetOutline(outlines, i, j, mask);
+                GetOutline(outlines, i, j, &mask);
 
             }
         }
@@ -71,9 +71,9 @@ Image CreateMaskPicture(Image ref)
 
     Pixel p;
     Pixel pup;
-    for (i = 0; i < largeur; i++)
+    for (i = 1; i <= largeur; i++)
     {
-        for (j = 0; j < hauteur; j++)
+        for (j = 1; j <= hauteur; j++)
         {
             p = get_pixel_image(ref, i, j);
             pup = get_pixel_image(ref, i, j-1);

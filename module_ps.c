@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include"module_ps.h"
-#include"tableau.h"
+
 
 // Le but de cette fonction recuperer un tableau de coordonnées puis d'ecrire un fichier .ps
 // qui dessine une image de ses coordonnées relier par un segment
@@ -31,7 +31,7 @@ void sortie_fichier(Tableau  xy_image, char* name) {
             fprintf(fichier, "%lf %lf moveto", cx, cy);
             //moveto sur le fichier avec coord
         }
-        else if {
+        else{
             fprintf(fichier, "%lf %lf lineto", cx, cy);
             if (((i+1)%3)==0) {
                 fprintf(fichier, "\n");
