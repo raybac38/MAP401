@@ -32,6 +32,9 @@ Point2 TableauGetPoint2(Tableau * tab, unsigned index);
 /* Remove last element of tab*/
 void TableauRemove(Tableau * tab);
 
+/* Ecrire le tableau de points dans un fichier .txt*/
+void TableauWrite(Tableau * tab,Tableau * start, char * name);
+
 #endif
 
 
