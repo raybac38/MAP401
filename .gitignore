@@ -1,0 +1,36 @@
+# Ignore les fichiers objets et binaires
+*.o
+*.out
+*.exe
+
+# Ignore les fichiers générés lors de la compilation
+*.dSYM/
+
+# Ignore les fichiers de sauvegarde
+*~
+
+# Ignore les fichiers d'exécution temporaires
+*.tmp
+
+# Ignore les fichiers de compilation créés par l'IDE
+.vscode/
+.idea/
+
+# Ignore les fichiers de configuration système ou temporaires
+*.log
+*.swp
+
+# Ignore les fichiers de dépendances de compilation
+*.deps
+
+# Ignore les fichiers générés par les outils de documentation
+doc/
+docs/
+*.pdf
+
+# Ignore les fichiers de build spécifiques à un compilateur
+*.obj
+*.a
+*.dll
+*.so
+*.dylib
