@@ -11,19 +11,8 @@ Sortir une liste de points, ainsi qu'un tableau de début de polygone
 */
 
 
-void ExtractAllOutline(Tableau * outlines, Tableau * start, Image img)
+Liste * ExtractAllOutline(Image img)
 {
-    
-    if(outlines != NULL)
-    {
-        TableauRemove(outlines);
-    }
-    if(start != NULL)
-    {
-        TableauRemove(start);
-    }
-
-    unsigned outlineNumber = 0;
 
     Image mask = CreateMaskPicture(img);
 
@@ -35,6 +24,10 @@ void ExtractAllOutline(Tableau * outlines, Tableau * start, Image img)
 
     Pixel p;
 
+    Liste * contours = ListeInit();
+
+
+
     for (i = 1; i <= largeur; i++)
     {
         for (j = 1; j <= hauteur; j++)
@@ -42,15 +35,17 @@ void ExtractAllOutline(Tableau * outlines, Tableau * start, Image img)
             p = get_pixel_image(mask, i, j);
             if(p == NOIR)
             {
-                GetOutline(outlines, i, j, &mask);
 
+                printf("pixe %d, %d\n", i,j);
+                Tableau * contour = InitTableau();
+                GetOutline(contour, i - 1, j - 1, &img, &mask);
+                ListeAppend(contours, contour);
             }
+            
         }
-        
     }
-    
 
-    
+    return contours;
 }
 
 

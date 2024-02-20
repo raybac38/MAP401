@@ -1,5 +1,13 @@
 #include "contour.h"
 
+typedef struct node Node;
+
+struct node
+{
+    Tableau * contours;
+    Node * next;
+};
+
 typedef struct liste
 {
     Node * tete;
@@ -7,11 +15,7 @@ typedef struct liste
     unsigned size;
 }Liste;
 
-typedef struct node
-{
-    Tableau * contours;
-    Node * next;
-}Node;
+
 
 Liste * ListeInit(void);
 

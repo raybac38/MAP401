@@ -8,5 +8,6 @@
         "module_ps.h": "c",
         "multi_contour.h": "c",
         "contour.h": "c"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

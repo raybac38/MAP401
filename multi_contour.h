@@ -1,4 +1,6 @@
 #include "contour.h"
+#include "liste.h"
 
-void ExtractAllOutline(Tableau * outlines, Tableau * start, Image img);
+Liste * ExtractAllOutline(Image img);
+
 Image CreateMaskPicture(Image ref);

@@ -23,7 +23,7 @@ typedef struct NuttyNoodler
 }NuttyNoodler;
 
 /* Calculate a outline from a correct strating point*/
-void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int startingy, Image * img);
+void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int startingy, Image * img, Image * mask);
 
 
 #endif

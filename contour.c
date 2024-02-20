@@ -1,7 +1,5 @@
 #include "contour.h"
 
-
-
 /* 
 Declaration des fonction ici pour ne pas noyer les script 
 et le header qui n'ont de porter que local
@@ -37,6 +35,10 @@ void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int starting
         
         TableauAppend(outline, lastPosition);
 
+        if(mask != NULL)
+        {
+            set_pixel_image(*mask, GetValuePoint2(lastPosition, 'x') + 1, GetValuePoint2(lastPosition, 'y') + 1, BLANC);
+        }
 
     } while (0 == IsPoint2Equal(lastPosition, StartingPoint2));
     

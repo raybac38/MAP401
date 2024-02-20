@@ -1,11 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "contour.h"
 
 #include "image.h"
 
 
-
-///Prend un fichier et print la liste de ces contours dans le terminal
 
 int main(int argc, char * argv[])
 {
@@ -39,7 +38,7 @@ int main(int argc, char * argv[])
             if(p == NOIR && pup == BLANC)
             {
                 outlineDetected = true;
-                GetOutline(outline, i - 1, j - 1, &img);
+                GetOutline(outline, i - 1, j - 1, &img, NULL);
             }
             if(outlineDetected) break;
         }
@@ -62,8 +61,9 @@ int main(int argc, char * argv[])
 
         printf("fin des points du contours \n");
 
-        exit(EXIT_SUCCESS);
+        
         
     }
-    
+    exit(EXIT_SUCCESS);
 }
+
