@@ -78,15 +78,36 @@ void ListeInsert(Liste * l, Tableau * contour, unsigned index)
     }
     else
     {
-
-
+        unsigned i = 0;
+        
+        Node * pointeur = l->tete;
+        for (size_t val = 0; val < index - 1; val++)
+        {
+            pointeur = pointeur->next;
+        }
+        newNode->next = pointeur->next;
+        pointeur->next =newNode;
+        l->size++;
     }
 }
 
-void ListeRemove(Liste * l, unsigned index);
+Tableau * ListeGet(Liste * l, unsigned index)
+{
+    Node * pointeur = l->tete;
 
-bool ListeIsEmpty(Liste * l);
+    if(index >= l->size)
+    {
+        printf("Error : Out of index\n");
+        return;
+    }
+    for (size_t i = 0; i < index - 1; i++)
+    {
+        pointeur = pointeur->next;
+    }
+    return pointeur->contours;
+}
 
-Tableau * ListeGet(Liste * l, unsigned index);
-
-unsigned ListeSize(Liste * l);
+unsigned ListeSize(Liste * l)
+{
+    return l->size;
+}

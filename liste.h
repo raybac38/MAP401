@@ -21,10 +21,6 @@ void ListeAppend(Liste * l, Tableau * contour);
 
 void ListeInsert(Liste * l, Tableau * contour, unsigned index);
 
-void ListeRemove(Liste * l, unsigned index);
-
-bool ListeIsEmpty(Liste * l);
-
 Tableau * ListeGet(Liste * l, unsigned index);
 
 unsigned ListeSize(Liste * l);
