@@ -1,6 +1,5 @@
 #include "multi_contour.h"
-#include "module_ps.h"
-#include <string.h>
+#include "ps.h"
 
 
 /* Donne les contours d'une image ainsi que les informations*/
@@ -12,8 +11,10 @@ int main(int argc, char * argv[])
         exit(EXIT_SUCCESS);
     }
 
+
     Image image = lire_fichier_image(argv[1]);
 
+    Point2 dimention = SetPoint2(largeur_image(image), hauteur_image(image));
 
     Liste * contours = ExtractAllOutline(image);
 
@@ -28,10 +29,9 @@ int main(int argc, char * argv[])
 
     for (unsigned i = 0; i < nombreContours; i++)
     {
-        printf("Contour numero %ld\n", i);
+        printf("Contour numero %d\n", i);
         Tableau * t = ListeGet(contours, i);
-        printf("hey");
-        unsigned tabnbpoints = TableauGetSize(ListeGet(contours, i));
+        unsigned tabnbpoints = TableauGetSize(t);
         printf("Nombre de points %d\n", tabnbpoints);
         printf("Nombre de segments : %d\n", tabnbpoints - 1);
         
@@ -45,7 +45,7 @@ int main(int argc, char * argv[])
         {
 
             printf("Impression de l'image de contours \n");
-            sortie_fichier(*ListeGet(contours, 0), argv[2]);
+            PsSimpleSegment(contours, dimention, argv[2]);
         }
     return 0;
     

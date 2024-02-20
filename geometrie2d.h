@@ -33,6 +33,12 @@ Vector2 SumVector2(Vector2 a, Vector2 b);
 /*creates a Point2 sum of two Point2*/
 Point2 SumPoint2(Point2 a, Point2 b);
 
+/*creates a vector2 sub of two vector2*/
+Vector2 SubVector2(Vector2 a, Vector2 b);
+
+/*creates a Point2 sub of two Point2*/
+Point2 SubPoint2(Point2 a, Point2 b);
+
 /*Malloc un Vector2*/
 Vector2 * InitVector2(void);
 

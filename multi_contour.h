@@ -1,4 +1,3 @@
-#include "contour.h"
 #include "liste.h"
 
 Liste * ExtractAllOutline(Image img);

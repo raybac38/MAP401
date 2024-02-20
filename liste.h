@@ -1,3 +1,6 @@
+#ifndef LISTE_H
+#define LISTE_H
+
 #include "contour.h"
 
 typedef struct node Node;
@@ -32,3 +35,4 @@ unsigned ListeSize(Liste * l);
 
 
 
+#endif

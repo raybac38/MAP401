@@ -23,17 +23,23 @@ void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int starting
     nuttnutt.y = startingy;
     nuttnutt.img = img;
 
-    Point2 StartingPoint2 = SetPoint2(stratingx, startingy);
+    double dimentionY = (double)hauteur_image(*img);
 
-    TableauAppend(outline, StartingPoint2);
+    Point2 StartingPoint2 = SetPoint2(stratingx, startingy);
+    Point2 reverseY = SetPoint2((double)stratingx, dimentionY - (double)startingy);
+
+    TableauAppend(outline, reverseY);
 
     Point2 lastPosition;
     do
     {
+
 	    NuttNuttNextStep(&nuttnutt);
         lastPosition = NuttNuttDoReport(&nuttnutt);
         
-        TableauAppend(outline, lastPosition);
+        reverseY = SetPoint2(GetValuePoint2(lastPosition, 'x'), dimentionY - GetValuePoint2(lastPosition, 'y'));
+
+        TableauAppend(outline, reverseY);
 
         if(mask != NULL)
         {
@@ -41,7 +47,6 @@ void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int starting
         }
 
     } while (0 == IsPoint2Equal(lastPosition, StartingPoint2));
-    
     
 }
 

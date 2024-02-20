@@ -193,7 +193,7 @@ test_mask_img : test_mask_img.o multi_contour.o contour.o geometrie2d.o tableau.
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-test_multicontour : test_multicontour.o multi_contour.o liste.o contour.o geometrie2d.o tableau.o image.o module_ps.o
+test_multicontour : test_multicontour.o multi_contour.o liste.o contour.o geometrie2d.o tableau.o image.o ps.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

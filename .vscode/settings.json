@@ -10,7 +10,8 @@
         "contour.h": "c",
         "liste.h": "c",
         "ps.h": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "stdio.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
