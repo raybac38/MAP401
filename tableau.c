@@ -70,26 +70,3 @@ void TableauRemove(Tableau * tab)
 {
     tab->size --;
 }
-
-void TableauWrite(Tableau * tab, Tableau * start, char * name)
-{
-    char * nom = strcat(name, ".txt\0");
-    FILE * f = fopen(nom, 'w');
-    Point2 point;
-
-    unsigned index = 0;
-
-    unsigned size =  TableauGetSize(tab);
-
-    for (index = 0; index < size; index++)
-    {
-
-        
-
-
-
-        point = TableauGetPoint2(tab, index);
-        fprintf(f, "%lf,%lf\n")
-    }
-    
-}
