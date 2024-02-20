@@ -1,15 +1,7 @@
 # MAP401
 
-i
-Objectif du projet :
+Objectif du projet : 
+    Image pbm ==> Vectoriel
 
-    - Convertion format bitmap -> vectoriel
-
-Documentation du Projet :
-
-
-Arbre de dépendance : 
-
-
-
-image : 
+Documentation :
+    -- à venir --
