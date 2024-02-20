@@ -7,7 +7,10 @@
         "types.h": "c",
         "module_ps.h": "c",
         "multi_contour.h": "c",
-        "contour.h": "c"
+        "contour.h": "c",
+        "liste.h": "c",
+        "ps.h": "c",
+        "typeinfo": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

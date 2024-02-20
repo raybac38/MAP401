@@ -93,6 +93,7 @@ void ListeInsert(Liste * l, Tableau * contour, unsigned index)
 
 Tableau * ListeGet(Liste * l, unsigned index)
 {
+    printf("accessing element %d\n", index);
     Node * pointeur = l->tete;
 
     if(index >= l->size)
@@ -100,7 +101,7 @@ Tableau * ListeGet(Liste * l, unsigned index)
         printf("Error : Out of index\n");
         return;
     }
-    for (size_t i = 0; i < index - 1; i++)
+    for (size_t i = 0; i < index; i++)
     {
         pointeur = pointeur->next;
     }

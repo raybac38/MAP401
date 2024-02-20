@@ -84,6 +84,13 @@ test_image.o: test_image.c image.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 
+ps.o: ps.c ps.h liste.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module ps"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@
+
 #test_geometrie2d.o : test_geometrie2d.c geometrie2d.h 
 #	@echo ""
 #	@echo "---------------------------------------------"
