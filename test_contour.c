@@ -32,7 +32,6 @@ int main(int argc, char * argv[])
     {
         for (i = 1; i <=largeur ; i++)
         {
-            printf("%d", i);
             p = get_pixel_image(img, i, j);
             pup = get_pixel_image(img, i, j -1);
             if(p == NOIR && pup == BLANC)
@@ -52,14 +51,17 @@ int main(int argc, char * argv[])
     else
     {
         printf("contour detecter ! \n");
-        unsigned i;
         unsigned nombre_point = TableauGetSize(outline);
+        printf("nombre de points : %d\n", nombre_point);
+        printf("nombre de segment : %d\n", nombre_point - 1);
+        unsigned i;
         for (i = 0; i < nombre_point; i++)
         {
             ShowPoint2(TableauGetPoint2(outline, i));
+            printf("\n");
         }
 
-        printf("fin des points du contours \n");
+        printf("\nfin des points du contours \n");
 
         
         
