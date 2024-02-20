@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_contour test_mask_img test_module_ps
+EXECUTABLES = test_image test_contour test_mask_img test_multicontour
 
 
 #############################################################################
@@ -84,6 +84,13 @@ test_image.o: test_image.c image.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 
+ps.o: ps.c ps.h liste.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module ps"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@
+
 #test_geometrie2d.o : test_geometrie2d.c geometrie2d.h 
 #	@echo ""
 #	@echo "---------------------------------------------"
@@ -98,7 +105,7 @@ contour.o : contour.c contour.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 
-multi_contour.o : multi_contour.c multi_contour.h contour.h
+multi_contour.o : multi_contour.c multi_contour.h contour.h liste.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module multi_contour"
@@ -117,7 +124,14 @@ tableau.o : tableau.c tableau.h
 	@echo "---------------------------------------------"
 	@echo "Compilation du module tableau"
 	@echo "---------------------------------------------"
-	$(CC) -c $(COMPILOPTS) $< -o $@		
+	$(CC) -c $(COMPILOPTS) $< -o $@	
+	
+liste.o : liste.c liste.h tableau.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module liste"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@	
 
 test_contour.o : test_contour.c contour.h geometrie2d.h image.h
 	@echo ""
@@ -139,6 +153,15 @@ test_module_ps.o : test_module_ps.c module_ps.h tableau.h
 	@echo "Compilation du module test_module_ps"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@	
+
+test_multicontour.o : test_multicontour.c multi_contour.h module_ps.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_multicontour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@	
+
+
 ########################################################
 # regles explicites de creation des executables
 
@@ -163,14 +186,14 @@ test_contour : test_contour.o contour.o geometrie2d.o tableau.o image.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-test_mask_img : test_mask_img.o multi_contour.o contour.o geometrie2d.o tableau.o image.o
+test_mask_img : test_mask_img.o multi_contour.o contour.o geometrie2d.o tableau.o image.o liste.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-test_module_ps : test_module_ps.o module_ps.o multi_contour.o contour.o geometrie2d.o tableau.o image.o
+test_multicontour : test_multicontour.o multi_contour.o liste.o contour.o geometrie2d.o tableau.o image.o ps.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

@@ -39,6 +39,24 @@ Vector2 SumVector2(Vector2 a, Vector2 b)
     vect.y = a.y + b.y;
     return vect;
 }
+
+Point2 SubPoint2(Point2 a, Point2 b)
+{
+    Point2 pt;
+    pt.x = a.x - b.x;
+    pt.y = a.y - b.y;
+    return pt;
+}
+
+Vector2 SubVector2(Vector2 a, Vector2 b)
+{
+    Vector2 vect;
+    vect.x = a.x - b.x;
+    vect.y = a.y - b.y;
+    return vect;
+}
+
+
 Vector2 * InitVector2()
 {
     return (Vector2 *)malloc(sizeof(Vector2));
