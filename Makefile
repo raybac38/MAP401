@@ -147,14 +147,14 @@ module_ps.o : module_ps.c module_ps.h tableau.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@			
 	
-test_module_ps.o : test_module_ps.c module_ps.h tableau.h
+test_module_ps.o : test_module_ps.c ps.h tableau.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module test_module_ps"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@	
 
-test_multicontour.o : test_multicontour.c multi_contour.h module_ps.h
+test_multicontour.o : test_multicontour.c multi_contour.h ps.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module test_multicontour"

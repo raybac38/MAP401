@@ -28,6 +28,8 @@ int main(int argc, char * argv[])
     Pixel p;
     Pixel pup;
     
+    printf("lecture du fichier %s\n", argv[1]);
+
     for (j = 1; j <= hauteur; j++)
     {
         for (i = 1; i <=largeur ; i++)
