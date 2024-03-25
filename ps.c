@@ -100,7 +100,7 @@ FILE * OpenFile(char *name)
 void WriteEntete(FILE *f, Point2 dimention)
 {
     fprintf(f, "%%!PS-Adobe-3.0 EPSF-3.0\n");
-    fprintf(f, "%%%%BoundingBox: 0 0 %f %f\n", GetValuePoint2(dimention, 'x'), GetValuePoint2(dimention, 'y'));
+    fprintf(f, "%%%%BoundingBox: 0 0 %d %d\n", (unsigned)GetValuePoint2(dimention, 'x'), (unsigned)GetValuePoint2(dimention, 'y'));
 }
 
 void WriteStrokeColor(FILE *f, char r, char g, char b) 

@@ -39,7 +39,6 @@ COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 # liste des executables
 EXECUTABLES = test_image test_contour test_mask_img test_multicontour
 
-
 #############################################################################
 # definition des regles
 #############################################################################

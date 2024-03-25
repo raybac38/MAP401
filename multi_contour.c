@@ -35,8 +35,6 @@ Liste * ExtractAllOutline(Image img)
             p = get_pixel_image(mask, i, j);
             if(p == NOIR)
             {
-
-                printf("pixe %d, %d\n", i,j);
                 Tableau * contour = InitTableau();
                 GetOutline(contour, i - 1, j - 1, &img, &mask);
                 ListeAppend(contours, contour);

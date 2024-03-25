@@ -30,23 +30,26 @@ void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int starting
 
     TableauAppend(outline, reverseY);
 
-    Point2 lastPosition;
+	ecrire_image(*mask);
+
+    Point2 lastPosition = StartingPoint2;
     do
     {
+        if(mask != NULL && nuttnutt.orientation != Sud && nuttnutt.orientation != Ouest)
+        {
+            ShowPoint2(lastPosition);
+            set_pixel_image(*mask,(unsigned int) GetValuePoint2(lastPosition, 'x'), (unsigned int) GetValuePoint2(lastPosition, 'y') +1 , BLANC);
+        }
 
-	    NuttNuttNextStep(&nuttnutt);
+	NuttNuttNextStep(&nuttnutt);
         lastPosition = NuttNuttDoReport(&nuttnutt);
         
         reverseY = SetPoint2(GetValuePoint2(lastPosition, 'x'), dimentionY - GetValuePoint2(lastPosition, 'y'));
 
         TableauAppend(outline, reverseY);
 
-        if(mask != NULL)
-        {
-            set_pixel_image(*mask, GetValuePoint2(lastPosition, 'x') + 1, GetValuePoint2(lastPosition, 'y') + 1, BLANC);
-        }
-
-    } while (0 == IsPoint2Equal(lastPosition, StartingPoint2));
+        
+    } while (1 != IsPoint2Equal(lastPosition, StartingPoint2));
     
 }
 
