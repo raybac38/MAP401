@@ -11,7 +11,8 @@ int main(int argc, char * argv[])
         exit(EXIT_SUCCESS);
     }
 
-    int somme;
+    unsigned somme_segment = 0;
+    unsigned somme_point = 0;
     Image image = lire_fichier_image(argv[1]);
 
     Point2 dimention = SetPoint2(largeur_image(image), hauteur_image(image));
@@ -29,15 +30,14 @@ int main(int argc, char * argv[])
 
     for (unsigned i = 0; i < nombreContours; i++)
     {
-        printf("Contour numero %d\n", i);
         Tableau * t = ListeGet(contours, i);
         unsigned tabnbpoints = TableauGetSize(t);
-        printf("Nombre de points %d\n", tabnbpoints);
-        printf("Nombre de segments : %d\n", tabnbpoints - 1);
-        somme = somme + tabnbpoints - 1;
+        somme_segment += (unsigned)tabnbpoints - 1;
+        somme_point += (unsigned)tabnbpoints;
     }
 
-    printf("\n \n La somme des segments est donc %d\n", somme);
+    printf("Total nombre point : %d\n", somme_point);
+    printf("Total nombre segment : %d\n", somme_segment);
 
     printf("Fin du teste\n");
     
