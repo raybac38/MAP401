@@ -11,7 +11,7 @@ int main(int argc, char * argv[])
         exit(EXIT_SUCCESS);
     }
 
-
+    int somme;
     Image image = lire_fichier_image(argv[1]);
 
     Point2 dimention = SetPoint2(largeur_image(image), hauteur_image(image));
@@ -34,10 +34,10 @@ int main(int argc, char * argv[])
         unsigned tabnbpoints = TableauGetSize(t);
         printf("Nombre de points %d\n", tabnbpoints);
         printf("Nombre de segments : %d\n", tabnbpoints - 1);
-        
+        somme = somme + tabnbpoints - 1;
     }
 
-    
+    printf("\n \n La somme des segments est donc %d\n", somme);
 
     printf("Fin du teste\n");
     
