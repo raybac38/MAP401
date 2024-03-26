@@ -36,8 +36,9 @@ void PsSimpleSegment(Liste * contours, Point2 dimention, char * name)
         }
         WriteStrokeWidth(f,0);
         WriteStrokeColor(f, 255, 0, 0);
-        WriteStroke(f);
     }
+
+    WriteFill(f);
 
     WriteFooter(f);
 

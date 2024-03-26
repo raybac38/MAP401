@@ -30,24 +30,32 @@ void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int starting
 
     TableauAppend(outline, reverseY);
 
+    ecrire_image(*mask);
+
+    ShowPoint2(StartingPoint2);
 
     Point2 lastPosition = StartingPoint2;
     do
     {
-        if(mask != NULL && nuttnutt.orientation != Sud && nuttnutt.orientation != Ouest)
-        {
-            set_pixel_image(*mask,(unsigned int) GetValuePoint2(lastPosition, 'x'), (unsigned int) GetValuePoint2(lastPosition, 'y') +1 , BLANC);
-        }
+        ShowPoint2(lastPosition);
 
-	NuttNuttNextStep(&nuttnutt);
-        lastPosition = NuttNuttDoReport(&nuttnutt);
-        
         reverseY = SetPoint2(GetValuePoint2(lastPosition, 'x'), dimentionY - GetValuePoint2(lastPosition, 'y'));
 
         TableauAppend(outline, reverseY);
 
+        if(nuttnutt.orientation == Est)
+        {
+            set_pixel_image(*mask,(unsigned int) GetValuePoint2(lastPosition, 'x') + 1, (unsigned int) GetValuePoint2(lastPosition, 'y') +1 , BLANC);
+        }
+        NuttNuttGoForward(&nuttnutt);
+
+	    NuttNuttNextStep(&nuttnutt);
+        lastPosition = NuttNuttDoReport(&nuttnutt);
         
-    } while (1 != IsPoint2Equal(lastPosition, StartingPoint2));
+
+
+        
+    } while (1 != IsPoint2Equal(lastPosition, StartingPoint2) || nuttnutt.orientation != Est);
     
 }
 
@@ -68,7 +76,6 @@ void NuttNuttNextStep(NuttyNoodler * nuttnutt)
         TurnNuttyNoodler(nuttnutt, 90);
     }
     
-    NuttNuttGoForward(nuttnutt);
 }
 
 /* NuttNutt say where she is*/
