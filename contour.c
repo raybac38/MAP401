@@ -30,14 +30,12 @@ void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int starting
 
     TableauAppend(outline, reverseY);
 
-	ecrire_image(*mask);
 
     Point2 lastPosition = StartingPoint2;
     do
     {
         if(mask != NULL && nuttnutt.orientation != Sud && nuttnutt.orientation != Ouest)
         {
-            ShowPoint2(lastPosition);
             set_pixel_image(*mask,(unsigned int) GetValuePoint2(lastPosition, 'x'), (unsigned int) GetValuePoint2(lastPosition, 'y') +1 , BLANC);
         }
 
