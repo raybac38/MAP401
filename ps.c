@@ -82,6 +82,27 @@ void WriteCurveto3(FILE *f, Point2 a, Point2 b, Point2 c)
             GetValuePoint2(c, 'x'), GetValuePoint2(c, 'y'));
 }
 
+FILE * OpenFile(char *name)
+{
+    strcat(name, ".eps");
+    FILE * f = fopen(name, "w");
+    return f;
+}
+
+void WriteEntete(FILE *f, Point2 dimention)
+{
+    fprintf(f, "%%!PS-Adobe-3.0 EPSF-3.0\n");
+    fprintf(f, "%%%%BoundingBox: 0 0 %d %d\n", (unsigned)GetValuePoint2(dimention, 'x'), (unsigned)GetValuePoint2(dimention, 'y'));
+}
+
+void WriteStrokeColor(FILE *f, char r, char g, char b) 
+{
+    fprintf(f, "%d %d %d setrgbcolor\n", r / 255, g / 255, b / 255);
+}
+void WriteStrokeWidth(FILE *f, unsigned epaisseur) 
+{
+    fprintf(f, "%d setlinewidth\n", epaisseur);
+}
 //__________________________________________________________________________
 void PsCourbeBezier(Liste * contours, Point2 dimention, char * name)
 {
@@ -114,24 +135,4 @@ void PsCourbeBezier(Liste * contours, Point2 dimention, char * name)
 //___________________________________________________________________
 
 
-FILE * OpenFile(char *name)
-{
-    strcat(name, ".eps");
-    FILE * f = fopen(name, "w");
-    return f;
-}
 
-void WriteEntete(FILE *f, Point2 dimention)
-{
-    fprintf(f, "%%!PS-Adobe-3.0 EPSF-3.0\n");
-    fprintf(f, "%%%%BoundingBox: 0 0 %d %d\n", (unsigned)GetValuePoint2(dimention, 'x'), (unsigned)GetValuePoint2(dimention, 'y'));
-}
-
-void WriteStrokeColor(FILE *f, char r, char g, char b) 
-{
-    fprintf(f, "%d %d %d setrgbcolor\n", r / 255, g / 255, b / 255);
-}
-void WriteStrokeWidth(FILE *f, unsigned epaisseur) 
-{
-    fprintf(f, "%d setlinewidth\n", epaisseur);
-}
