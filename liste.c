@@ -1,7 +1,7 @@
 #include "liste.h"
 
 
-
+/*Initialise une liste de longueur 0 avec une tete/queue*/
 Liste * ListeInit()
 {
     Liste * l = (Liste *)malloc(sizeof(Liste));
@@ -11,6 +11,7 @@ Liste * ListeInit()
     return l;
 }
 
+/*Detruit une liste et libere la memoire*/
 void ListeDestroy(Liste ** l)
 {
     if(*l == NULL) return;
@@ -32,6 +33,7 @@ void ListeDestroy(Liste ** l)
     return;
 }
 
+/*Ajoute un element à la liste*/
 void ListeAppend(Liste * l, Tableau * contour)
 {
     Node * newNode = malloc(sizeof(Node));
@@ -53,6 +55,8 @@ void ListeAppend(Liste * l, Tableau * contour)
     return;
 }
 
+/*Insère un element dans la liste chaînee à l'index specifie
+(traite les différents cas de figure avec si l'indice est en milieu de chaine, une insertion de noeud)*/
 void ListeInsert(Liste * l, Tableau * contour, unsigned index)
 {
     if(index > l->size)
@@ -91,8 +95,10 @@ void ListeInsert(Liste * l, Tableau * contour, unsigned index)
     }
 }
 
+/*Obtenir un element avec un index */
 Tableau * ListeGet(Liste * l, unsigned index)
 {
+    printf("accessing element %d\n", index);
     Node * pointeur = l->tete;
 
     if(index >= l->size)
@@ -107,6 +113,7 @@ Tableau * ListeGet(Liste * l, unsigned index)
     return pointeur->contours;
 }
 
+/*retourne la taille de la liste*/
 unsigned ListeSize(Liste * l)
 {
     return l->size;
