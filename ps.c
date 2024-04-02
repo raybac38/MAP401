@@ -82,6 +82,37 @@ void WriteCurveto3(FILE *f, Point2 a, Point2 b, Point2 c)
             GetValuePoint2(c, 'x'), GetValuePoint2(c, 'y'));
 }
 
+//__________________________________________________________________________
+void PsCourbeBezier(Liste * contours, Point2 dimention, char * name)
+{
+    FILE * f = OpenFile(name);
+    WriteEntete(f, dimention);
+
+    for (size_t i = 0; i < ListeSize(contours); i++)
+    {
+        Tableau *tab = ListeGet(contours, i);
+
+        WriteMoveto(f, TableauGetPoint2(tab, 0));
+
+        for (size_t j = 1; j < TableauGetSize(tab); j++)
+        {
+            if ((j % 3) == 0) {
+                WriteCurveto3(f, TableauGetPoint2(tab, j-2), TableauGetPoint2(tab,j-1), TableauGetPoint2(tab,j))
+            }
+
+        }
+        WriteStrokeWidth(f,0);
+        WriteStrokeColor(f, 255, 0, 0);
+    }
+
+    WriteFill(f);
+
+    WriteFooter(f);
+
+    CloseFile(f);
+}
+//___________________________________________________________________
+
 
 FILE * OpenFile(char *name)
 {
