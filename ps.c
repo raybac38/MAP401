@@ -74,7 +74,7 @@ void WriteLineto(FILE *f, Point2 a)
     fprintf(f, "%f %f lineto\n", GetValuePoint2(a, 'x'), GetValuePoint2(a, 'y'));
 }
 
-void WriteCurveto2(FILE *f, Point2 a, Point2 b, Point2 c)
+void WriteCurveto3(FILE *f, Point2 a, Point2 b, Point2 c)
 {
     fprintf(f, "%f %f %f %f %f %f curveto\n",
             GetValuePoint2(a, 'x'), GetValuePoint2(a, 'y'),
@@ -82,14 +82,6 @@ void WriteCurveto2(FILE *f, Point2 a, Point2 b, Point2 c)
             GetValuePoint2(c, 'x'), GetValuePoint2(c, 'y'));
 }
 
-void WriteCurveto3(FILE *f, Point2 a, Point2 b, Point2 c, Point2 d)
-{
-    fprintf(f, "%f %f %f %f %f %f %f %f curveto\n",
-            GetValuePoint2(a, 'x'), GetValuePoint2(a, 'y'),
-            GetValuePoint2(b, 'x'), GetValuePoint2(b, 'y'),
-            GetValuePoint2(c, 'x'), GetValuePoint2(c, 'y'),
-            GetValuePoint2(d, 'x'), GetValuePoint2(d, 'y'));
-}
 
 FILE * OpenFile(char *name)
 {
