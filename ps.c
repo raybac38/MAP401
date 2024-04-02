@@ -13,8 +13,7 @@ void CloseFile(FILE *f);
 void WriteFill(FILE *f);
 void WriteMoveto(FILE *f, Point2 a);
 void WriteLineto(FILE *f, Point2 a);
-void WriteCurveto2(FILE *f, Point2 a, Point2 b, Point2 c);
-void WriteCurveto3(FILE *f, Point2 a, Point2 b, Point2 c, Point2 d);
+void WriteCurveto3(FILE *f, Point2 a, Point2 b, Point2 c);
 FILE *OpenFile(char *name);
 
 
