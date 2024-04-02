@@ -117,7 +117,7 @@ void PsCourbeBezier(Liste * contours, Point2 dimention, char * name)
         for (size_t j = 1; j < TableauGetSize(tab); j++)
         {
             if ((j % 3) == 0) {
-                WriteCurveto3(f, TableauGetPoint2(tab, j-2), TableauGetPoint2(tab,j-1), TableauGetPoint2(tab,j))
+                WriteCurveto3(f, TableauGetPoint2(tab, j-2), TableauGetPoint2(tab,j-1), TableauGetPoint2(tab,j));
             }
 
         }
