@@ -199,3 +199,56 @@ unsigned IsVector2Equal(Vector2 a, Vector2 b)
 {
     return (a.x == b.x) && (a.y == b.y);
 }
+
+double DistanceSegmentPoint(Point2 a, Point2 b, Point2 c)
+{
+    Vector2 ab = Vector2FromPoint2(a,b);
+    Vector2 ac = Vector2FromPoint2(a,c);
+
+    double distance_ab = Distance(a,b);
+    double distance_ac = Distance(a,c);
+
+    if(distance_ab == 0)
+    {
+        return distance_ac;
+    }
+
+    double dot_product = Dotproduct(ab, ac);
+
+    if(dot_product <= 0)
+    {
+        /// C' est sur A
+        return distance_ac;
+    }
+
+    if(dot_product >= distance_ab * distance_ab)
+    {
+        return Distance(b,c);
+    }
+
+    double valeur = dot_product/ (distance_ab * distance_ab);
+
+    Point2 c_prime = SumPoint2(a, Vector2toPoint2(ScaleVector2(ab, valeur)));
+
+
+    return Distance(c_prime, c); 
+
+
+        
+}
+
+
+Point2 Vector2toPoint2(Vector2 a)
+{
+    Point2 b;
+    b.x = a.x;
+    b.y = a.y;
+    return b;
+}
+Vector2 Point2toVector2(Point2 a)
+{
+    Vector2 b;
+    b.x = a.x;
+    b.y = a.y;
+    return b;
+}

@@ -87,4 +87,18 @@ unsigned IsPoint2Equal(Point2 a, Point2 b);
 /*is two Vector2 equal ?*/
 unsigned IsVector2Equal(Vector2 a, Vector2 b);
 
+/*distance between a segement and un points
+Segment AB et point C
+*/
+
+double DistanceSegmentPoint(Point2 a, Point2 b, Point2 c);
+
+/*Convertion*/
+
+Point2 Vector2toPoint2(Vector2 a);
+Vector2 Point2toVector2(Point2 a);
+
+
+
+
 #endif
