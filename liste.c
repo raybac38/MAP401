@@ -98,7 +98,6 @@ void ListeInsert(Liste * l, Tableau * contour, unsigned index)
 /*Obtenir un element avec un index */
 Tableau * ListeGet(Liste * l, unsigned index)
 {
-    printf("accessing element %d\n", index);
     Node * pointeur = l->tete;
 
     if(index >= l->size)

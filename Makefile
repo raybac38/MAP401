@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product
+EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_segment_simplification
 
 #############################################################################
 # definition des regles
@@ -90,6 +90,13 @@ ps.o: ps.c ps.h liste.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 
+intArray.o: intArray.c intArray.h 
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module intArray"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@
+
 #test_geometrie2d.o : test_geometrie2d.c geometrie2d.h 
 #	@echo ""
 #	@echo "---------------------------------------------"
@@ -101,6 +108,13 @@ contour.o : contour.c contour.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module contour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@
+
+simplification_segment.o : simplification_segment.c simplification_segment.h multi_contour.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module simplification_segment"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 
@@ -160,6 +174,13 @@ test_multicontour.o : test_multicontour.c multi_contour.h ps.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@	
 
+test_segment_simplification.o : test_segment_simplification.c simplification_segment.h ps.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_multicontour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@	
+
 test_dot_product.o : test_dot_product.c geometrie2d.h
 	@echo ""
 	@echo "---------------------------------------------"
@@ -207,6 +228,13 @@ test_multicontour : test_multicontour.o multi_contour.o liste.o contour.o geomet
 	$(CC) $^ $(LDOPTS) -o $@
 
 test_dot_product : test_dot_product.o geometrie2d.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_segment_simplification : test_segment_simplification.o simplification_segment.o multi_contour.o liste.o contour.o geometrie2d.o tableau.o image.o ps.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

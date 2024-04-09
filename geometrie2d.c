@@ -208,7 +208,7 @@ double DistanceSegmentPoint(Point2 a, Point2 b, Point2 c)
     double distance_ab = Distance(a,b);
     double distance_ac = Distance(a,c);
 
-    if(distance_ab == 0)
+    if(distance_ab == 0) 
     {
         return distance_ac;
     }
