@@ -90,10 +90,10 @@ ps.o: ps.c ps.h liste.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 
-intArray.o: intArray.c intArray.h 
+uintArray.o: uintArray.c uintArray.h 
 	@echo ""
 	@echo "---------------------------------------------"
-	@echo "Compilation du module intArray"
+	@echo "Compilation du module uintArray"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 

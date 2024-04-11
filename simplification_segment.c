@@ -1,6 +1,6 @@
 #include "simplification_segment.h"
 
-void Recursif_Douglas_Peucker(Tableau * contour, Tableau * contour_simplifier, unsigned index_a, unsigned index_b, double distance_seuil);
+void Recursif_Douglas_Peucker(Tableau * contour, UIntArray * index_contour_simplifier, unsigned index_a, unsigned index_b, double distance_seuil);
 
 Liste * Simplification_Segment(Liste * liste_contours, double distance_seuil)
 {
@@ -9,14 +9,16 @@ Liste * Simplification_Segment(Liste * liste_contours, double distance_seuil)
 
     for (unsigned index_contour = 0; index_contour < nombre_contour; index_contour++)
     {
-        Tableau * contour_simplifier = InitTableau();
+
+        UIntArray * index_contour_simplifier = UIntArrayInitStandard(); // Initialisation a une taille standard
+
         Tableau * contour =  ListeGet(liste_contours, index_contour);
         
         unsigned last_element_index = TableauGetSize(contour) - 1;
 
 
-        Recursif_Douglas_Peucker(contour, contour_simplifier, 0, last_element_index, distance_seuil);
-        TableauAppend(contour_simplifier, TableauGetPoint2(contour, 0));
+        Recursif_Douglas_Peucker(contour, index_contour_simplifier, 0, last_element_index, distance_seuil);
+        UIntArrayAddSafe(index_contour_simplifier, 0);
 
         ListeAppend(liste_contours_simplifier ,contour_simplifier);   
 
@@ -27,7 +29,10 @@ Liste * Simplification_Segment(Liste * liste_contours, double distance_seuil)
 
 
 
-void Recursif_Douglas_Peucker(Tableau * contour, Tableau * contour_simplifier, unsigned index_a, unsigned index_b, double distance_seuil)
+//// Amélioration possible dans l'algorythme de Douglas Peucker pour enviter une redondance des appelles RAM 
+////    Faire en sorte que les valeurs n'ayant pas de changement ne soit pas réappelé
+
+void Recursif_Douglas_Peucker(Tableau * contour, UIntArray * index_contour_simplifier, unsigned index_a, unsigned index_b, double distance_seuil)
 {
     Point2 point_a = TableauGetPoint2(contour ,index_a);
     Point2 point_b = TableauGetPoint2(contour ,index_b);
@@ -55,13 +60,13 @@ void Recursif_Douglas_Peucker(Tableau * contour, Tableau * contour_simplifier, u
     {
         // Dépassement de la distance seuil
         ShowPoint2(point_a);
-        TableauAppend(contour_simplifier, point_a);
+        UIntArrayAddSafe(index_contour_simplifier, index_a);
 
     }
     else
     {
-        Recursif_Douglas_Peucker(contour, contour_simplifier, index_a, index_distance_max, distance_seuil);
-        Recursif_Douglas_Peucker(contour, contour_simplifier, index_distance_max, index_b, distance_seuil);
+        Recursif_Douglas_Peucker(contour, index_contour_simplifier, index_a, index_distance_max, distance_seuil);
+        Recursif_Douglas_Peucker(contour, index_contour_simplifier, index_distance_max, index_b, distance_seuil);
     }
 }
 

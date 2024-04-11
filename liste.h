@@ -18,8 +18,6 @@ typedef struct liste
     unsigned size;
 }Liste;
 
-
-
 Liste * ListeInit(void);
 
 void ListeDestroy(Liste ** l);

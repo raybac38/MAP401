@@ -11,7 +11,9 @@
         "liste.h": "c",
         "ps.h": "c",
         "typeinfo": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "simplification_segment.h": "c",
+        "uintarray.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
