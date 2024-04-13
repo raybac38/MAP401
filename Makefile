@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_segment_simplification
+EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_simplification
 
 #############################################################################
 # definition des regles
@@ -111,10 +111,10 @@ contour.o : contour.c contour.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 
-simplification_segment.o : simplification_segment.c simplification_segment.h multi_contour.h
+simplification.o : simplification.c simplification.h multi_contour.h
 	@echo ""
 	@echo "---------------------------------------------"
-	@echo "Compilation du module simplification_segment"
+	@echo "Compilation du module simplification"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@
 
@@ -174,7 +174,7 @@ test_multicontour.o : test_multicontour.c multi_contour.h ps.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@	
 
-test_segment_simplification.o : test_segment_simplification.c simplification_segment.h ps.h
+test_simplification.o : test_simplification.c simplification.h ps.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module test_multicontour"
@@ -234,7 +234,7 @@ test_dot_product : test_dot_product.o geometrie2d.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-test_segment_simplification : test_segment_simplification.o simplification_segment.o multi_contour.o liste.o contour.o geometrie2d.o tableau.o image.o ps.o
+test_simplification : test_simplification.o simplification.o multi_contour.o liste.o contour.o geometrie2d.o tableau.o image.o ps.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

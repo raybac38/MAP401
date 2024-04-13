@@ -1,4 +1,4 @@
-#include "simplification_segment.h"
+#include "simplification.h"
 
 void Recursif_Douglas_Peucker(Tableau * contour, UIntArray * index_contour_simplifier, unsigned index_a, unsigned index_b, double distance_seuil);
 

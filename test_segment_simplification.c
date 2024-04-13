@@ -1,4 +1,4 @@
-#include "simplification_segment.h"
+#include "simplification.h"
 #include "ps.h"
 
 
