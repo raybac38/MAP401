@@ -1,4 +1,4 @@
 #include "multi_contour.h"
 #include "uintArray.h"
 
-Liste * Simplification_Segment(Liste * liste_contours, double distance_seuil);
+Tableau * Simplification_Segment(Tableau * liste_contours, double distance_seuil);

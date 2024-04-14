@@ -34,10 +34,10 @@ LDOPTS = -L$(LIBDIR) -lm
 INCLUDEOPTS = -I$(INCDIR)
 
 # options de compilation
-COMPILOPTS = -g -Wall $(INCLUDEOPTS)
+COMPILOPTS = -g -pg -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_simplification
+EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_segment_simplification
 
 #############################################################################
 # definition des regles
@@ -174,7 +174,7 @@ test_multicontour.o : test_multicontour.c multi_contour.h ps.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@	
 
-test_simplification.o : test_simplification.c simplification.h ps.h
+test_segment_simplification.o : test_segment_simplification.c simplification.h ps.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module test_multicontour"
@@ -234,7 +234,7 @@ test_dot_product : test_dot_product.o geometrie2d.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-test_simplification : test_simplification.o simplification.o multi_contour.o liste.o contour.o geometrie2d.o tableau.o image.o ps.o
+test_segment_simplification : test_segment_simplification.o simplification.o multi_contour.o liste.o contour.o geometrie2d.o tableau.o image.o ps.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
@@ -244,3 +244,5 @@ test_simplification : test_simplification.o simplification.o multi_contour.o lis
 # regle pour "nettoyer" le r�pertoire
 clean:
 	rm -fR $(EXECUTABLES) *.o 
+
+recompile: clean all

@@ -5,9 +5,15 @@
 
 #define DEFAULT_MAX_SIZE 8
 
-typedef struct Tableau
+typedef enum
 {
-    Point2 * array;
+    TYPE_INT, TYPE_POINT2, TYPE_TABLEAU
+} Type;
+
+typedef struct
+{
+    void * array;
+    Type type;
     unsigned size;
     unsigned max;
     unsigned char power;
@@ -15,19 +21,38 @@ typedef struct Tableau
 
 
 /* Initialise un tableau*/
-Tableau * InitTableau(void);
+Tableau * InitTableau(Type type, unsigned size);
 
-/* Ajout d'un point a la fin du tableau*/
-void TableauAppend(Tableau * tab, Point2 a);
+/*
+Ajout d'une valeur a la fin d'un tableau avec detection de débordement
+*/
+void TableauAppend(Tableau * tab, void * a);
+
+/*
+Ajout d'une valeur a la fin du tableau sans detection de débordement
+Utilisation non recommander
+*/
+void TableauAppendUnsafe(Tableau * tab, void * a);
 
 /* Avoir la taille du tableau*/
 unsigned TableauGetSize(Tableau * tab);
 
-/* Lièbre la mamoire du tableau*/
+/* Avoir le type du tableau*/
+Type TableauGetType(Tableau * tab);
+
+/* 
+Lièbre la mamoire du tableau
+*/
 void TableauFree(Tableau ** tab);
 
 /* Get point2 element from tab*/
 Point2 TableauGetPoint2(Tableau * tab, unsigned index);
+
+/* Get Int element from tab*/
+int TableauGetInt(Tableau * tab, unsigned index);
+
+/* Get tableau element from tab*/
+Tableau * TableauGetTableau(Tableau * tab, unsigned index);
 
 /* Remove last element of tab*/
 void TableauRemove(Tableau * tab);

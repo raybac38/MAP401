@@ -39,7 +39,7 @@ void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int starting
 
         NuttNuttGoForward(&nuttnutt);
 
-        TableauAppend(outline, reverseY);
+        TableauAppend(outline, &reverseY);
 
 	    NuttNuttNextStep(&nuttnutt);
         lastPosition = NuttNuttDoReport(&nuttnutt);
@@ -47,7 +47,7 @@ void GetOutline(Tableau * outline, unsigned int stratingx, unsigned int starting
     } while (1 != IsPoint2Equal(lastPosition, StartingPoint2) || nuttnutt.orientation != Est);
     reverseY = SetPoint2(stratingx, dimentionY - startingy);
     
-    TableauAppend(outline, reverseY);
+    TableauAppend(outline, &reverseY);
 }
 
 

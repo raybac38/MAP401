@@ -15,7 +15,7 @@ int main(int argc, char * argv[])
     }
 
     Image img = lire_fichier_image(argv[1]);
-    Tableau * outline = InitTableau();
+    Tableau * outline = InitTableau(TYPE_POINT2, 0);
 
     unsigned largeur = largeur_image(img);
     unsigned hauteur = hauteur_image(img);

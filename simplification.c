@@ -1,26 +1,28 @@
 #include "simplification.h"
 
-void Recursif_Douglas_Peucker(Tableau * contour, UIntArray * index_contour_simplifier, unsigned index_a, unsigned index_b, double distance_seuil);
+void Recursif_Douglas_Peucker(Tableau * contour, Tableau * contour_simplifier, unsigned index_a, unsigned index_b, double distance_seuil);
 
-Liste * Simplification_Segment(Liste * liste_contours, double distance_seuil)
+Tableau * Simplification_Segment(Tableau * liste_contours, double distance_seuil)
 {
-    Liste * liste_contours_simplifier = ListeInit();
-    unsigned nombre_contour = ListeSize(liste_contours);
+    Tableau * liste_contours_simplifier = InitTableau(TYPE_TABLEAU, 0);
+    unsigned nombre_contour = TableauGetSize(liste_contours);
 
     for (unsigned index_contour = 0; index_contour < nombre_contour; index_contour++)
     {
 
-        UIntArray * index_contour_simplifier = UIntArrayInitStandard(); // Initialisation a une taille standard
-
-        Tableau * contour =  ListeGet(liste_contours, index_contour);
+        Tableau * contour_simplifiers = InitTableau(TYPE_POINT2, 0); // Initialisation a une taille standard
+        Tableau * contour =  TableauGetTableau(liste_contours, index_contour);
         
         unsigned last_element_index = TableauGetSize(contour) - 1;
 
 
-        Recursif_Douglas_Peucker(contour, index_contour_simplifier, 0, last_element_index, distance_seuil);
-        UIntArrayAddSafe(index_contour_simplifier, 0);
+        Recursif_Douglas_Peucker(contour, contour_simplifiers, 0, last_element_index, distance_seuil);
+        
+        Point2 point = TableauGetPoint2(contour_simplifiers, 0);
+        TableauAppend(contour_simplifiers, &point);
 
-        ListeAppend(liste_contours_simplifier ,contour_simplifier);   
+
+        TableauAppend(liste_contours_simplifier , contour_simplifiers);   
 
 
     }
@@ -32,7 +34,7 @@ Liste * Simplification_Segment(Liste * liste_contours, double distance_seuil)
 //// Amélioration possible dans l'algorythme de Douglas Peucker pour enviter une redondance des appelles RAM 
 ////    Faire en sorte que les valeurs n'ayant pas de changement ne soit pas réappelé
 
-void Recursif_Douglas_Peucker(Tableau * contour, UIntArray * index_contour_simplifier, unsigned index_a, unsigned index_b, double distance_seuil)
+void Recursif_Douglas_Peucker(Tableau * contour, Tableau * contour_simplifier, unsigned index_a, unsigned index_b, double distance_seuil)
 {
     Point2 point_a = TableauGetPoint2(contour ,index_a);
     Point2 point_b = TableauGetPoint2(contour ,index_b);
@@ -59,14 +61,13 @@ void Recursif_Douglas_Peucker(Tableau * contour, UIntArray * index_contour_simpl
     if(distance_max <= distance_seuil)
     {
         // Dépassement de la distance seuil
-        ShowPoint2(point_a);
-        UIntArrayAddSafe(index_contour_simplifier, index_a);
+        TableauAppend(contour_simplifier, &point_a);
 
     }
     else
     {
-        Recursif_Douglas_Peucker(contour, index_contour_simplifier, index_a, index_distance_max, distance_seuil);
-        Recursif_Douglas_Peucker(contour, index_contour_simplifier, index_distance_max, index_b, distance_seuil);
+        Recursif_Douglas_Peucker(contour, contour_simplifier, index_a, index_distance_max, distance_seuil);
+        Recursif_Douglas_Peucker(contour, contour_simplifier, index_distance_max, index_b, distance_seuil);
     }
 }
 

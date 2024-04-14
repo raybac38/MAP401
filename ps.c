@@ -18,14 +18,14 @@ FILE *OpenFile(char *name);
 
 
 
-void PsSimpleSegment(Liste * contours, Point2 dimention, char * name)
+void PsSimpleSegment(Tableau * contours, Point2 dimention, char * name)
 {
     FILE * f = OpenFile(name);
     WriteEntete(f, dimention);
 
-    for (size_t i = 0; i < ListeSize(contours); i++)
+    for (size_t i = 0; i < TableauGetSize(contours); i++)
     {
-        Tableau *tab = ListeGet(contours, i);
+        Tableau *tab = TableauGetTableau(contours, i);
 
         WriteMoveto(f, TableauGetPoint2(tab, 0));
 
@@ -102,15 +102,18 @@ void WriteStrokeWidth(FILE *f, unsigned epaisseur)
 {
     fprintf(f, "%d setlinewidth\n", epaisseur);
 }
+
+
+
 //__________________________________________________________________________
-void PsCourbeBezier(Liste * contours, Point2 dimention, char * name)
+void PsCourbeBezier(Tableau * contours, Point2 dimention, char * name)
 {
     FILE * f = OpenFile(name);
     WriteEntete(f, dimention);
 
-    for (size_t i = 0; i < ListeSize(contours); i++)
+    for (size_t i = 0; i < TableauGetSize(contours); i++)
     {
-        Tableau *tab = ListeGet(contours, i);
+        Tableau *tab = TableauGetTableau(contours, i);
 
         WriteMoveto(f, TableauGetPoint2(tab, 0));
 

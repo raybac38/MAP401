@@ -11,20 +11,18 @@ int main(int argc, char * argv[])
         exit(EXIT_SUCCESS);
     }
 
-    unsigned somme_segment = 0;
-    unsigned somme_point = 0;
     Image image = lire_fichier_image(argv[1]);
 
     Point2 dimention = SetPoint2(largeur_image(image), hauteur_image(image));
 
-    Liste * contours = ExtractAllOutline(image);
+    Tableau * contours = ExtractAllOutline(image);
 
     printf("Information : \n");
 
     printf("Image de taille : %d x %d \n", largeur_image(image), hauteur_image(image));
 
 
-    unsigned nombreContours =  ListeSize(contours);
+    unsigned nombreContours =  TableauGetSize(contours);
 
     printf("Nombre de contours detecter : %d\n", nombreContours);
 

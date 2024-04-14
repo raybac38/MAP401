@@ -18,23 +18,23 @@ int main(int argc, char * argv[])
 
     Point2 dimention = SetPoint2(largeur_image(image), hauteur_image(image));
 
-    Liste * contours = ExtractAllOutline(image);
+    Tableau * contours = ExtractAllOutline(image);
 
 
-    Liste * contours_simplifier = Simplification_Segment(contours, atof(argv[3]));
+    Tableau * contours_simplifier = Simplification_Segment(contours, atof(argv[3]));
 
     printf("Information : \n");
 
     printf("Image de taille : %d x %d \n", largeur_image(image), hauteur_image(image));
 
 
-    unsigned nombreContours =  ListeSize(contours_simplifier);
+    unsigned nombreContours =  TableauGetSize(contours_simplifier);
 
     printf("Nombre de contours detecter : %d\n", nombreContours);
 
     for (unsigned i = 0; i < nombreContours; i++)
     {
-        Tableau * t = ListeGet(contours_simplifier, i);
+        Tableau * t = TableauGetTableau(contours_simplifier, i);
         unsigned tabnbpoints = TableauGetSize(t);
         somme_segment += (unsigned)tabnbpoints - 1;
         somme_point += (unsigned)tabnbpoints;
