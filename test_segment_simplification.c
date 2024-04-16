@@ -23,7 +23,10 @@ int main(int argc, char * argv[])
 
     Tableau * contours_simplifier = Simplification_Segment(contours, atof(argv[3]));
 
-    printf("Information : \n");
+    printf("Information :\n");
+
+    printf("Image : %s\n", argv[1]);
+    printf("Distante seuil : %lf\n", atof(argv[3]));
 
     printf("Image de taille : %d x %d \n", largeur_image(image), hauteur_image(image));
 

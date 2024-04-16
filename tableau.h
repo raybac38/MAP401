@@ -60,6 +60,18 @@ void TableauRemove(Tableau * tab);
 /* Ecrire le tableau de points dans un fichier .txt*/
 void TableauWrite(Tableau * tab,Tableau * start, char * name);
 
+
+/*
+    Approxime une serie de point par une courbe de beziez
+*/
+Point2 ApproxBezier2(Tableau *, unsigned a, unsigned b);
+
+/*
+    Somme des points entre A et B exclus
+*/
+Point2 TableauSumPoint2(Tableau *, unsigned a, unsigned b);
+
+
 #endif
 
 

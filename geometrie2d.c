@@ -237,6 +237,10 @@ double DistanceSegmentPoint(Point2 a, Point2 b, Point2 c)
         
 }
 
+Point2 Point2MiddlePoint2(Point2 a, Point2 b)
+{
+    return SetPoint2(a.x + b.x / 2 ,  a.y + b.y / 2);
+}
 
 Point2 Vector2toPoint2(Vector2 a)
 {
@@ -251,4 +255,22 @@ Vector2 Point2toVector2(Point2 a)
     b.x = a.x;
     b.y = a.y;
     return b;
+}
+
+double Point2DistanceBezier2(Point2 c0, Point2 c1, Point2 c2, Point2 a, double ti)
+{
+    /// Calcule du point sur la courbe de bezier
+
+    double alpha = (1 - ti) * (1 - ti);
+    double beta = 2 * ti * (1 - ti);
+    double gamma = ti * ti;
+
+    Point2 khi = ScalePoint2(c0, alpha);
+    Point2 psi = ScalePoint2(c1, beta);
+    Point2 omega = ScalePoint2(c2, gamma);
+
+    Point2 point = SumPoint2(khi, psi);
+    point = SumPoint2(point, omega);
+
+    return Distance(point, a);
 }

@@ -98,6 +98,11 @@ double DistanceSegmentPoint(Point2 a, Point2 b, Point2 c);
 Point2 Vector2toPoint2(Vector2 a);
 Vector2 Point2toVector2(Point2 a);
 
+/*
+Calcule le point au milleux
+*/
+Point2 Point2MiddlePoint2(Point2 a, Point2 b);
+double Point2DistanceBezier2(Point2 c0, Point2 c1, Point2 c2, Point2 a, double ti);
 
 
 
