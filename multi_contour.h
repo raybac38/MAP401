@@ -1,4 +1,5 @@
-#include "liste.h"
+#include "tableau.h"
+#include "image.h"
 
 Tableau * ExtractAllOutline(Image img);
 
