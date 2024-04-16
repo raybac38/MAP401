@@ -28,7 +28,7 @@ INCDIR = .
 LIBDIR = .
 
 # options pour l'�dition des liens
-LDOPTS = -L$(LIBDIR) -lm
+LDOPTS = -g -L$(LIBDIR) -lm
 
 # options pour la recherche des fichiers .o et .h
 INCLUDEOPTS = -I$(INCDIR)
@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -pg -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_segment_simplification
+EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_segment_simplification test_bezier2_simplification
 
 #############################################################################
 # definition des regles
@@ -167,6 +167,13 @@ test_segment_simplification.o : test_segment_simplification.c simplification.h p
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@	
 
+test_bezier2_simplification.o : test_bezier2_simplification.c simplification.h ps.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_multicontour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@	
+
 test_dot_product.o : test_dot_product.c geometrie2d.h
 	@echo ""
 	@echo "---------------------------------------------"
@@ -226,6 +233,14 @@ test_segment_simplification : test_segment_simplification.o simplification.o mul
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
+	
+test_bezier2_simplification : test_bezier2_simplification.o simplification.o multi_contour.o contour.o geometrie2d.o tableau.o image.o ps.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
 
 # regle pour "nettoyer" le r�pertoire
 clean:

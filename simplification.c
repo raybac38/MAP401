@@ -111,7 +111,7 @@ void Recursif_Douglas_Peucker_bezier2(Tableau * contour, Tableau * contour_simpl
     unsigned index_distance_max;
     double distance_max = 0;
 
-    for (unsigned j = index_c0 + 1; j <= index_c2; j++)
+    for (unsigned j = index_c0 + 1; j < index_c2; j++)
     {
         unsigned i = j - index_c0;
         double ti = (double)i / (double)delta;
