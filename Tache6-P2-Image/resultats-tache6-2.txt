@@ -1,0 +1,130 @@
+Information :
+Image : ./IMAGES_TESTS/elephant-gotlib.pbm
+Distante seuil : 1.000000
+Image de taille : 1350 x 2000 
+Nombre de contours detecter : 313
+Avant traitement : 
+Total nombre point : 115877
+Total nombre segment : 115564
+Apres traitement : 
+Total nombre point : 13502
+Total nombre segment : 13189
+Fin du teste
+Impression de l'image de contours 
+Information :
+Image : ./IMAGES_TESTS/goudyini-A.pbm
+Distante seuil : 1.000000
+Image de taille : 1000 x 1000 
+Nombre de contours detecter : 258
+Avant traitement : 
+Total nombre point : 73702
+Total nombre segment : 73444
+Apres traitement : 
+Total nombre point : 5516
+Total nombre segment : 5258
+Fin du teste
+Impression de l'image de contours 
+Information :
+Image : ./IMAGES_TESTS/JoaquimHock-LesArbres.pbm
+Distante seuil : 1.000000
+Image de taille : 1500 x 2100 
+Nombre de contours detecter : 543
+Avant traitement : 
+Total nombre point : 231827
+Total nombre segment : 231284
+Apres traitement : 
+Total nombre point : 27097
+Total nombre segment : 26554
+Fin du teste
+Impression de l'image de contours 
+Information :
+Image : ./IMAGES_TESTS/cheval.pbm
+Distante seuil : 1.000000
+Image de taille : 2000 x 1500 
+Nombre de contours detecter : 59
+Avant traitement : 
+Total nombre point : 32061
+Total nombre segment : 32002
+Apres traitement : 
+Total nombre point : 3222
+Total nombre segment : 3163
+Fin du teste
+Impression de l'image de contours 
+Information :
+Image : ./IMAGES_TESTS/papillon2.pbm
+Distante seuil : 1.000000
+Image de taille : 1122 x 417 
+Nombre de contours detecter : 140
+Avant traitement : 
+Total nombre point : 18352
+Total nombre segment : 18212
+Apres traitement : 
+Total nombre point : 1979
+Total nombre segment : 1839
+Fin du teste
+Impression de l'image de contours 
+Information :
+Image : ./IMAGES_TESTS/elephant-gotlib.pbm
+Distante seuil : 2.000000
+Image de taille : 1350 x 2000 
+Nombre de contours detecter : 313
+Avant traitement : 
+Total nombre point : 115877
+Total nombre segment : 115564
+Apres traitement : 
+Total nombre point : 4601
+Total nombre segment : 4288
+Fin du teste
+Impression de l'image de contours 
+Information :
+Image : ./IMAGES_TESTS/goudyini-A.pbm
+Distante seuil : 2.000000
+Image de taille : 1000 x 1000 
+Nombre de contours detecter : 258
+Avant traitement : 
+Total nombre point : 73702
+Total nombre segment : 73444
+Apres traitement : 
+Total nombre point : 2946
+Total nombre segment : 2688
+Fin du teste
+Impression de l'image de contours 
+Information :
+Image : ./IMAGES_TESTS/JoaquimHock-LesArbres.pbm
+Distante seuil : 2.000000
+Image de taille : 1500 x 2100 
+Nombre de contours detecter : 543
+Avant traitement : 
+Total nombre point : 231827
+Total nombre segment : 231284
+Apres traitement : 
+Total nombre point : 13515
+Total nombre segment : 12972
+Fin du teste
+Impression de l'image de contours 
+Information :
+Image : ./IMAGES_TESTS/cheval.pbm
+Distante seuil : 2.000000
+Image de taille : 2000 x 1500 
+Nombre de contours detecter : 59
+Avant traitement : 
+Total nombre point : 32061
+Total nombre segment : 32002
+Apres traitement : 
+Total nombre point : 1446
+Total nombre segment : 1387
+Fin du teste
+Impression de l'image de contours 
+Information :
+Image : ./IMAGES_TESTS/papillon2.pbm
+Distante seuil : 2.000000
+Image de taille : 1122 x 417 
+Nombre de contours detecter : 140
+Avant traitement : 
+Total nombre point : 18352
+Total nombre segment : 18212
+Apres traitement : 
+Total nombre point : 1157
+Total nombre segment : 1017
+Fin du teste
+Impression de l'image de contours 

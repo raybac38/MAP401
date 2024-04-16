@@ -31,9 +31,25 @@ int main(int argc, char * argv[])
     printf("Image de taille : %d x %d \n", largeur_image(image), hauteur_image(image));
 
 
+
     unsigned nombreContours =  TableauGetSize(contours_simplifier);
 
     printf("Nombre de contours detecter : %d\n", nombreContours);
+
+    for (unsigned i = 0; i < nombreContours; i++)
+    {
+        Tableau * t = TableauGetTableau(contours, i);
+        unsigned tabnbpoints = TableauGetSize(t);
+        somme_segment += (unsigned)tabnbpoints - 1;
+        somme_point += (unsigned)tabnbpoints;
+    }
+    printf("Avant traitement : \n");
+    printf("Total nombre point : %d\n", somme_point);
+    printf("Total nombre segment : %d\n", somme_segment);
+
+    somme_point = 0;
+    somme_segment = 0;
+
 
     for (unsigned i = 0; i < nombreContours; i++)
     {
@@ -42,7 +58,7 @@ int main(int argc, char * argv[])
         somme_segment += (unsigned)tabnbpoints - 1;
         somme_point += (unsigned)tabnbpoints;
     }
-
+    printf("Apres traitement : \n");
     printf("Total nombre point : %d\n", somme_point);
     printf("Total nombre segment : %d\n", somme_segment);
 
