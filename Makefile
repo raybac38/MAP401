@@ -28,7 +28,7 @@ INCDIR = .
 LIBDIR = .
 
 # options pour l'�dition des liens
-LDOPTS = -L$(LIBDIR) -lm
+LDOPTS = -g -pg -L$(LIBDIR) -lm
 
 # options pour la recherche des fichiers .o et .h
 INCLUDEOPTS = -I$(INCDIR)

@@ -1,0 +1,432 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 18.75      0.12     0.12 24464092     0.00     0.00  get_pixel_image
+ 16.41      0.23     0.10 24047340     0.00     0.00  set_pixel_image
+ 14.06      0.32     0.09        1    90.00   172.40  lire_fichier_image
+  9.38      0.38     0.06        2    30.00    30.00  creer_image
+  7.81      0.42     0.05  3713093     0.00     0.00  DistanceSegmentPoint
+  6.25      0.47     0.04        1    40.00   182.52  CreateMaskPicture
+  4.69      0.49     0.03  7426186     0.00     0.00  Vector2FromPoint2
+  4.69      0.53     0.03        1    30.00   275.10  ExtractAllOutline
+  3.12      0.55     0.02 10870295     0.00     0.00  Distance
+  3.12      0.56     0.02  4366908     0.00     0.00  TableauGetPoint2
+  3.12      0.58     0.02  3217916     0.00     0.00  Vector2toPoint2
+  3.12      0.60     0.02      464     0.04     0.40  Recursif_Douglas_Peucker
+  2.34      0.62     0.01  3217916     0.00     0.00  ScaleVector2
+  0.78      0.62     0.01  3481609     0.00     0.00  Dotproduct
+  0.78      0.63     0.01  3217916     0.00     0.00  SumPoint2
+  0.78      0.64     0.01        4     1.25     1.25  largeur_image
+  0.78      0.64     0.01                             ScalePoint2
+  0.00      0.64     0.00   817856     0.00     0.00  GetValuePoint2
+  0.00      0.64     0.00   464361     0.00     0.00  SetPoint2
+  0.00      0.64     0.00   364103     0.00     0.00  TableauAppend
+  0.00      0.64     0.00   231484     0.00     0.00  GetNuttNuttLeftPixelValue
+  0.00      0.64     0.00   231484     0.00     0.00  GetNuttNuttRightPixelValue
+  0.00      0.64     0.00   231484     0.00     0.00  IsPoint2Equal
+  0.00      0.64     0.00   231484     0.00     0.00  NuttNuttDoReport
+  0.00      0.64     0.00   231484     0.00     0.00  NuttNuttGoForward
+  0.00      0.64     0.00   231484     0.00     0.00  NuttNuttNextStep
+  0.00      0.64     0.00   132622     0.00     0.00  TableauGetSize
+  0.00      0.64     0.00   130763     0.00     0.00  WriteLineto
+  0.00      0.64     0.00   130752     0.00     0.00  TurnNuttyNoodler
+  0.00      0.64     0.00     1392     0.00     0.00  TableauGetTableau
+  0.00      0.64     0.00      930     0.00     0.00  InitTableau
+  0.00      0.64     0.00      468     0.00     0.00  hauteur_image
+  0.00      0.64     0.00      464     0.00     0.01  GetOutline
+  0.00      0.64     0.00      464     0.00     0.00  WriteMoveto
+  0.00      0.64     0.00      464     0.00     0.00  WriteStrokeColor
+  0.00      0.64     0.00      464     0.00     0.00  WriteStrokeWidth
+  0.00      0.64     0.00      284     0.00     0.00  TableauIncreaseSize
+  0.00      0.64     0.00        1     0.00     0.00  CloseFile
+  0.00      0.64     0.00        1     0.00     0.00  OpenFile
+  0.00      0.64     0.00        1     0.00     0.60  PsSimpleSegment
+  0.00      0.64     0.00        1     0.00   184.40  Simplification_Segment
+  0.00      0.64     0.00        1     0.00     0.00  WriteEntete
+  0.00      0.64     0.00        1     0.00     0.00  WriteFill
+  0.00      0.64     0.00        1     0.00     0.00  WriteFooter
+  0.00      0.64     0.00        1     0.00     0.00  entete_fichier_pbm
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2023 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 1.56% of 0.64 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     99.2    0.00    0.64                 main [1]
+                0.03    0.25       1/1           ExtractAllOutline [2]
+                0.00    0.18       1/1           Simplification_Segment [3]
+                0.09    0.08       1/1           lire_fichier_image [6]
+                0.00    0.00       2/4           largeur_image [18]
+                0.00    0.00       1/1           PsSimpleSegment [24]
+                0.00    0.00     465/132622      TableauGetSize [31]
+                0.00    0.00     464/1392        TableauGetTableau [34]
+                0.00    0.00       2/468         hauteur_image [36]
+                0.00    0.00       1/464361      SetPoint2 [26]
+-----------------------------------------------
+                0.03    0.25       1/1           main [1]
+[2]     43.0    0.03    0.25       1         ExtractAllOutline [2]
+                0.04    0.14       1/1           CreateMaskPicture [5]
+                0.06    0.00 12000000/24464092     get_pixel_image [8]
+                0.00    0.00     464/464         GetOutline [20]
+                0.00    0.00       1/4           largeur_image [18]
+                0.00    0.00     465/930         InitTableau [35]
+                0.00    0.00     464/364103      TableauAppend [27]
+                0.00    0.00       1/468         hauteur_image [36]
+-----------------------------------------------
+                0.00    0.18       1/1           main [1]
+[3]     28.8    0.00    0.18       1         Simplification_Segment [3]
+                0.02    0.16     464/464         Recursif_Douglas_Peucker [4]
+                0.00    0.00     464/4366908     TableauGetPoint2 [13]
+                0.00    0.00     928/364103      TableauAppend [27]
+                0.00    0.00     465/930         InitTableau [35]
+                0.00    0.00     465/132622      TableauGetSize [31]
+                0.00    0.00     464/1392        TableauGetTableau [34]
+-----------------------------------------------
+                              260598             Recursif_Douglas_Peucker [4]
+                0.02    0.16     464/464         Simplification_Segment [3]
+[4]     28.8    0.02    0.16     464+260598  Recursif_Douglas_Peucker [4]
+                0.05    0.10 3713093/3713093     DistanceSegmentPoint [7]
+                0.02    0.00 4235217/4366908     TableauGetPoint2 [13]
+                0.00    0.00  130763/364103      TableauAppend [27]
+                              260598             Recursif_Douglas_Peucker [4]
+-----------------------------------------------
+                0.04    0.14       1/1           ExtractAllOutline [2]
+[5]     28.5    0.04    0.14       1         CreateMaskPicture [5]
+                0.06    0.00 12001124/24464092     get_pixel_image [8]
+                0.05    0.00 12001124/24047340     set_pixel_image [9]
+                0.03    0.00       1/2           creer_image [10]
+                0.00    0.00       1/4           largeur_image [18]
+                0.00    0.00       1/468         hauteur_image [36]
+-----------------------------------------------
+                0.09    0.08       1/1           main [1]
+[6]     26.9    0.09    0.08       1         lire_fichier_image [6]
+                0.05    0.00 12000000/24047340     set_pixel_image [9]
+                0.03    0.00       1/2           creer_image [10]
+                0.00    0.00       1/1           entete_fichier_pbm [46]
+-----------------------------------------------
+                0.05    0.10 3713093/3713093     Recursif_Douglas_Peucker [4]
+[7]     22.7    0.05    0.10 3713093         DistanceSegmentPoint [7]
+                0.03    0.00 7426186/7426186     Vector2FromPoint2 [11]
+                0.02    0.00 10870295/10870295     Distance [12]
+                0.02    0.00 3217916/3217916     Vector2toPoint2 [14]
+                0.01    0.00 3217916/3217916     ScaleVector2 [15]
+                0.01    0.00 3481609/3481609     Dotproduct [16]
+                0.01    0.00 3217916/3217916     SumPoint2 [17]
+-----------------------------------------------
+                0.00    0.00  231484/24464092     GetNuttNuttLeftPixelValue [22]
+                0.00    0.00  231484/24464092     GetNuttNuttRightPixelValue [23]
+                0.06    0.00 12000000/24464092     ExtractAllOutline [2]
+                0.06    0.00 12001124/24464092     CreateMaskPicture [5]
+[8]     18.8    0.12    0.00 24464092         get_pixel_image [8]
+-----------------------------------------------
+                0.00    0.00   46216/24047340     GetOutline [20]
+                0.05    0.00 12000000/24047340     lire_fichier_image [6]
+                0.05    0.00 12001124/24047340     CreateMaskPicture [5]
+[9]     16.4    0.10    0.00 24047340         set_pixel_image [9]
+-----------------------------------------------
+                0.03    0.00       1/2           CreateMaskPicture [5]
+                0.03    0.00       1/2           lire_fichier_image [6]
+[10]     9.4    0.06    0.00       2         creer_image [10]
+-----------------------------------------------
+                0.03    0.00 7426186/7426186     DistanceSegmentPoint [7]
+[11]     4.7    0.03    0.00 7426186         Vector2FromPoint2 [11]
+-----------------------------------------------
+                0.02    0.00 10870295/10870295     DistanceSegmentPoint [7]
+[12]     3.1    0.02    0.00 10870295         Distance [12]
+-----------------------------------------------
+                0.00    0.00     464/4366908     Simplification_Segment [3]
+                0.00    0.00  131227/4366908     PsSimpleSegment [24]
+                0.02    0.00 4235217/4366908     Recursif_Douglas_Peucker [4]
+[13]     3.1    0.02    0.00 4366908         TableauGetPoint2 [13]
+-----------------------------------------------
+                0.02    0.00 3217916/3217916     DistanceSegmentPoint [7]
+[14]     3.1    0.02    0.00 3217916         Vector2toPoint2 [14]
+-----------------------------------------------
+                0.01    0.00 3217916/3217916     DistanceSegmentPoint [7]
+[15]     2.3    0.01    0.00 3217916         ScaleVector2 [15]
+-----------------------------------------------
+                0.01    0.00 3481609/3481609     DistanceSegmentPoint [7]
+[16]     0.8    0.01    0.00 3481609         Dotproduct [16]
+-----------------------------------------------
+                0.01    0.00 3217916/3217916     DistanceSegmentPoint [7]
+[17]     0.8    0.01    0.00 3217916         SumPoint2 [17]
+-----------------------------------------------
+                0.00    0.00       1/4           ExtractAllOutline [2]
+                0.00    0.00       1/4           CreateMaskPicture [5]
+                0.00    0.00       2/4           main [1]
+[18]     0.8    0.01    0.00       4         largeur_image [18]
+-----------------------------------------------
+                                                 <spontaneous>
+[19]     0.8    0.01    0.00                 ScalePoint2 [19]
+-----------------------------------------------
+                0.00    0.00     464/464         ExtractAllOutline [2]
+[20]     0.4    0.00    0.00     464         GetOutline [20]
+                0.00    0.00  231484/231484      NuttNuttNextStep [21]
+                0.00    0.00   46216/24047340     set_pixel_image [9]
+                0.00    0.00  555400/817856      GetValuePoint2 [25]
+                0.00    0.00  232876/464361      SetPoint2 [26]
+                0.00    0.00  231948/364103      TableauAppend [27]
+                0.00    0.00  231484/231484      NuttNuttGoForward [30]
+                0.00    0.00  231484/231484      NuttNuttDoReport [29]
+                0.00    0.00  231484/231484      IsPoint2Equal [28]
+                0.00    0.00     464/468         hauteur_image [36]
+-----------------------------------------------
+                0.00    0.00  231484/231484      GetOutline [20]
+[21]     0.4    0.00    0.00  231484         NuttNuttNextStep [21]
+                0.00    0.00  231484/231484      GetNuttNuttLeftPixelValue [22]
+                0.00    0.00  231484/231484      GetNuttNuttRightPixelValue [23]
+                0.00    0.00  130752/130752      TurnNuttyNoodler [33]
+-----------------------------------------------
+                0.00    0.00  231484/231484      NuttNuttNextStep [21]
+[22]     0.2    0.00    0.00  231484         GetNuttNuttLeftPixelValue [22]
+                0.00    0.00  231484/24464092     get_pixel_image [8]
+-----------------------------------------------
+                0.00    0.00  231484/231484      NuttNuttNextStep [21]
+[23]     0.2    0.00    0.00  231484         GetNuttNuttRightPixelValue [23]
+                0.00    0.00  231484/24464092     get_pixel_image [8]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[24]     0.1    0.00    0.00       1         PsSimpleSegment [24]
+                0.00    0.00  131227/4366908     TableauGetPoint2 [13]
+                0.00    0.00  131692/132622      TableauGetSize [31]
+                0.00    0.00  130763/130763      WriteLineto [32]
+                0.00    0.00     464/1392        TableauGetTableau [34]
+                0.00    0.00     464/464         WriteMoveto [37]
+                0.00    0.00     464/464         WriteStrokeWidth [39]
+                0.00    0.00     464/464         WriteStrokeColor [38]
+                0.00    0.00       1/1           OpenFile [42]
+                0.00    0.00       1/1           WriteEntete [43]
+                0.00    0.00       1/1           WriteFill [44]
+                0.00    0.00       1/1           WriteFooter [45]
+                0.00    0.00       1/1           CloseFile [41]
+-----------------------------------------------
+                0.00    0.00       2/817856      WriteEntete [43]
+                0.00    0.00     928/817856      WriteMoveto [37]
+                0.00    0.00  261526/817856      WriteLineto [32]
+                0.00    0.00  555400/817856      GetOutline [20]
+[25]     0.0    0.00    0.00  817856         GetValuePoint2 [25]
+-----------------------------------------------
+                0.00    0.00       1/464361      main [1]
+                0.00    0.00  231484/464361      NuttNuttDoReport [29]
+                0.00    0.00  232876/464361      GetOutline [20]
+[26]     0.0    0.00    0.00  464361         SetPoint2 [26]
+-----------------------------------------------
+                0.00    0.00     464/364103      ExtractAllOutline [2]
+                0.00    0.00     928/364103      Simplification_Segment [3]
+                0.00    0.00  130763/364103      Recursif_Douglas_Peucker [4]
+                0.00    0.00  231948/364103      GetOutline [20]
+[27]     0.0    0.00    0.00  364103         TableauAppend [27]
+                0.00    0.00     284/284         TableauIncreaseSize [40]
+-----------------------------------------------
+                0.00    0.00  231484/231484      GetOutline [20]
+[28]     0.0    0.00    0.00  231484         IsPoint2Equal [28]
+-----------------------------------------------
+                0.00    0.00  231484/231484      GetOutline [20]
+[29]     0.0    0.00    0.00  231484         NuttNuttDoReport [29]
+                0.00    0.00  231484/464361      SetPoint2 [26]
+-----------------------------------------------
+                0.00    0.00  231484/231484      GetOutline [20]
+[30]     0.0    0.00    0.00  231484         NuttNuttGoForward [30]
+-----------------------------------------------
+                0.00    0.00     465/132622      main [1]
+                0.00    0.00     465/132622      Simplification_Segment [3]
+                0.00    0.00  131692/132622      PsSimpleSegment [24]
+[31]     0.0    0.00    0.00  132622         TableauGetSize [31]
+-----------------------------------------------
+                0.00    0.00  130763/130763      PsSimpleSegment [24]
+[32]     0.0    0.00    0.00  130763         WriteLineto [32]
+                0.00    0.00  261526/817856      GetValuePoint2 [25]
+-----------------------------------------------
+                0.00    0.00  130752/130752      NuttNuttNextStep [21]
+[33]     0.0    0.00    0.00  130752         TurnNuttyNoodler [33]
+-----------------------------------------------
+                0.00    0.00     464/1392        main [1]
+                0.00    0.00     464/1392        Simplification_Segment [3]
+                0.00    0.00     464/1392        PsSimpleSegment [24]
+[34]     0.0    0.00    0.00    1392         TableauGetTableau [34]
+-----------------------------------------------
+                0.00    0.00     465/930         Simplification_Segment [3]
+                0.00    0.00     465/930         ExtractAllOutline [2]
+[35]     0.0    0.00    0.00     930         InitTableau [35]
+-----------------------------------------------
+                0.00    0.00       1/468         ExtractAllOutline [2]
+                0.00    0.00       1/468         CreateMaskPicture [5]
+                0.00    0.00       2/468         main [1]
+                0.00    0.00     464/468         GetOutline [20]
+[36]     0.0    0.00    0.00     468         hauteur_image [36]
+-----------------------------------------------
+                0.00    0.00     464/464         PsSimpleSegment [24]
+[37]     0.0    0.00    0.00     464         WriteMoveto [37]
+                0.00    0.00     928/817856      GetValuePoint2 [25]
+-----------------------------------------------
+                0.00    0.00     464/464         PsSimpleSegment [24]
+[38]     0.0    0.00    0.00     464         WriteStrokeColor [38]
+-----------------------------------------------
+                0.00    0.00     464/464         PsSimpleSegment [24]
+[39]     0.0    0.00    0.00     464         WriteStrokeWidth [39]
+-----------------------------------------------
+                0.00    0.00     284/284         TableauAppend [27]
+[40]     0.0    0.00    0.00     284         TableauIncreaseSize [40]
+-----------------------------------------------
+                0.00    0.00       1/1           PsSimpleSegment [24]
+[41]     0.0    0.00    0.00       1         CloseFile [41]
+-----------------------------------------------
+                0.00    0.00       1/1           PsSimpleSegment [24]
+[42]     0.0    0.00    0.00       1         OpenFile [42]
+-----------------------------------------------
+                0.00    0.00       1/1           PsSimpleSegment [24]
+[43]     0.0    0.00    0.00       1         WriteEntete [43]
+                0.00    0.00       2/817856      GetValuePoint2 [25]
+-----------------------------------------------
+                0.00    0.00       1/1           PsSimpleSegment [24]
+[44]     0.0    0.00    0.00       1         WriteFill [44]
+-----------------------------------------------
+                0.00    0.00       1/1           PsSimpleSegment [24]
+[45]     0.0    0.00    0.00       1         WriteFooter [45]
+-----------------------------------------------
+                0.00    0.00       1/1           lire_fichier_image [6]
+[46]     0.0    0.00    0.00       1         entete_fichier_pbm [46]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2023 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+  [41] CloseFile              [42] OpenFile               [14] Vector2toPoint2
+   [5] CreateMaskPicture      [24] PsSimpleSegment        [43] WriteEntete
+  [12] Distance                [4] Recursif_Douglas_Peucker [44] WriteFill
+   [7] DistanceSegmentPoint   [19] ScalePoint2            [45] WriteFooter
+  [16] Dotproduct             [15] ScaleVector2           [32] WriteLineto
+   [2] ExtractAllOutline      [26] SetPoint2              [37] WriteMoveto
+  [22] GetNuttNuttLeftPixelValue [3] Simplification_Segment [38] WriteStrokeColor
+  [23] GetNuttNuttRightPixelValue [17] SumPoint2          [39] WriteStrokeWidth
+  [20] GetOutline             [27] TableauAppend          [10] creer_image
+  [25] GetValuePoint2         [13] TableauGetPoint2       [46] entete_fichier_pbm
+  [35] InitTableau            [31] TableauGetSize          [8] get_pixel_image
+  [28] IsPoint2Equal          [34] TableauGetTableau      [36] hauteur_image
+  [29] NuttNuttDoReport       [40] TableauIncreaseSize    [18] largeur_image
+  [30] NuttNuttGoForward      [33] TurnNuttyNoodler        [6] lire_fichier_image
+  [21] NuttNuttNextStep       [11] Vector2FromPoint2       [9] set_pixel_image

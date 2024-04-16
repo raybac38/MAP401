@@ -60,27 +60,39 @@ Image CreateMaskPicture(Image ref)
     Image img = creer_image(largeur, hauteur);
 
     unsigned i = 0;
-    unsigned j = 0;
+    unsigned j = 1;
 
-    Pixel p;
-    Pixel pup;
+    Pixel pixel;
+    Pixel pixel_up;
     for (i = 1; i <= largeur; i++)
     {
+        pixel_up = BLANC; 
         for (j = 1; j <= hauteur; j++)
         {
-            p = get_pixel_image(ref, i, j);
-            pup = get_pixel_image(ref, i, j-1);
-            if(p == NOIR && pup == BLANC)
+            pixel = get_pixel_image(ref, i, j);
+
+            if(pixel == NOIR && pixel_up == BLANC)
             {
                 set_pixel_image(img, i, j, NOIR);
+                set_pixel_image(img, i, j + 1, BLANC);
+                j++;
+                pixel = pixel_up = get_pixel_image(ref, i, j);
+            }
+            else if(pixel == NOIR && pixel_up == NOIR)
+            {
+                set_pixel_image(img, i, j, BLANC);
+                set_pixel_image(img, i, j + 1, BLANC);
+                j++;
+                pixel = pixel_up = get_pixel_image(ref, i, j);
             }
             else
             {
                 set_pixel_image(img, i, j, BLANC);
             }
+            
+            pixel_up = pixel; 
         }
         
     }
     return img;
-    
 }

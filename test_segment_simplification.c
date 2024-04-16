@@ -50,7 +50,7 @@ int main(int argc, char * argv[])
             printf("Impression de l'image de contours \n");
             PsSimpleSegment(contours_simplifier, dimention, argv[2]);
         
-    return 0;
+    exit(EXIT_SUCCESS);
     
 
 }
