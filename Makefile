@@ -28,7 +28,7 @@ INCDIR = .
 LIBDIR = .
 
 # options pour l'�dition des liens
-LDOPTS = -g -L$(LIBDIR) -lm
+LDOPTS = -L$(LIBDIR) -lm
 
 # options pour la recherche des fichiers .o et .h
 INCLUDEOPTS = -I$(INCDIR)
@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -pg -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_segment_simplification test_bezier2_simplification
+EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_segment_simplification test_bezier2_simplification test_distance_bezier
 
 #############################################################################
 # definition des regles
@@ -96,6 +96,13 @@ ps.o: ps.c ps.h tableau.h
 #	@echo "Compilation du module test_geometrie2d"
 #	@echo "---------------------------------------------"
 #	$(CC) -c $(COMPILOPTS) $< -o $@
+
+test_distance_bezier.o: test_distance_bezier.c tableau.h geometrie2d.h 
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module contour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@
 
 contour.o : contour.c contour.h 
 	@echo ""
@@ -241,6 +248,12 @@ test_bezier2_simplification : test_bezier2_simplification.o simplification.o mul
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
+test_distance_bezier: test_distance_bezier.o tableau.o geometrie2d.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
 
 # regle pour "nettoyer" le r�pertoire
 clean:

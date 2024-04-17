@@ -105,8 +105,8 @@ void Recursif_Douglas_Peucker_bezier2(Tableau * contour, Tableau * contour_simpl
     unsigned delta = index_c2 - index_c0;
 
     Point2 c0 = TableauGetPoint2(contour ,index_c0);
-    Point2 c1 = TableauGetPoint2(contour ,index_c2);
-    Point2 c2 = ApproxBezier2(contour, index_c0, index_c2);
+    Point2 c2 = TableauGetPoint2(contour ,index_c2);
+    Point2 c1 = ApproxBezier2(contour, index_c0, index_c2);
 
     unsigned index_distance_max;
     double distance_max = 0;
@@ -116,6 +116,7 @@ void Recursif_Douglas_Peucker_bezier2(Tableau * contour, Tableau * contour_simpl
         unsigned i = j - index_c0;
         double ti = (double)i / (double)delta;
         double distance = Point2DistanceBezier2(c0, c1, c2, TableauGetPoint2(contour, j), ti);
+
 
         if(distance > distance_max)
         {
@@ -128,6 +129,7 @@ void Recursif_Douglas_Peucker_bezier2(Tableau * contour, Tableau * contour_simpl
     if(distance_max <= distance_seuil)
     {
         // Dépassement de la distance seuil
+
         TableauAppend(contour_simplifier, &c0);
         TableauAppend(contour_simplifier, &c1);
 
@@ -138,10 +140,6 @@ void Recursif_Douglas_Peucker_bezier2(Tableau * contour, Tableau * contour_simpl
         Recursif_Douglas_Peucker_bezier2(contour, contour_simplifier, index_distance_max, index_c2, distance_seuil);
     }
 }
-
-
-
-
 
 
 

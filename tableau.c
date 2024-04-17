@@ -238,11 +238,64 @@ Point2 ApproxBezier2(Tableau *tab, unsigned a, unsigned b)
         return Point2MiddlePoint2(TableauGetPoint2(tab, a), TableauGetPoint2(tab, b));
     }
 
-    double alpha = (3 * delta) / ((delta * delta) - 1);
-    double beta = (1 - 2 * delta) / (2 * (delta - 1));
+    double alpha = (3.0 * (double)delta) / (((double)delta * (double)delta) - 1.0);
+    double beta = (1.0 - 2.0 * (double)delta) / (2.0 * ((double)delta + 1.0));
 
     Point2 sum = TableauSumPoint2(tab, a, b);
     Point2 a_plus_b = SumPoint2(TableauGetPoint2(tab, a), TableauGetPoint2(tab, b));
 
-    return SumPoint2(ScalePoint2(sum, alpha), ScalePoint2(a_plus_b, beta));
+    //ShowPoint2(sum);
+
+    Point2 c = SumPoint2(ScalePoint2(sum, alpha), ScalePoint2(a_plus_b, beta));
+
+
+    return c;
 }
+
+/*
+double alpha(int n) {
+    return (-15 * n * n * n + 5 * n * n + 2 * n + 4) / (3.0 * (n + 2) * (3 * n * n + 1));
+}
+
+double beta(int n) {
+    return (10 * n * n * n - 15 * n * n + n + 2) / (3.0 * (n + 2) * (3 * n * n + 1));
+}
+
+double lambda(int n) {
+    return (70 * n) / (3.0 * (n * n - 1) * (n * n - 4) * (3 * n * n + 1));
+}
+
+double gamma(int k, int n) {
+    return 6 * k * k * k * k - 8 * n * k * k * k + 6 * k * k - 4 * n * k + n * n * n * n - n * n;
+}
+
+Point2 ApproxBezier3(Tableau *tab, unsigned a, unsigned b)
+{
+    unsigned delta = b - a;
+
+    if (delta == 1 || delta == 2)
+    {
+        //Degres 2
+
+    }
+
+    double alpha = (3.0 * (double)delta) / (((double)delta * (double)delta) - 1.0);
+    double beta = (1.0 - 2.0 * (double)delta) / (2.0 * ((double)delta - 1.0));
+
+    //printf("%lf %lf \n",alpha, beta);
+
+    Point2 sum = TableauSumPoint2(tab, a, b);
+
+    //ShowPoint2(sum);
+
+
+    Point2 a_plus_b = SumPoint2(TableauGetPoint2(tab, a), TableauGetPoint2(tab, b));
+        //ShowPoint2(a_plus_b);
+
+    Point2 c = SumPoint2(ScalePoint2(sum, alpha), ScalePoint2(a_plus_b, beta));
+    //ShowPoint2(c);
+
+    return c;
+}
+
+*/

@@ -123,8 +123,9 @@ void PsCourbeBezier2(Tableau *contours, Point2 dimention, char *name)
             P1 = TableauGetPoint2(tab, j);
             P2 = TableauGetPoint2(tab, j + 1);
 
-            Q1 = ScalePoint2(SumPoint2(ScalePoint2(P1, 2), P0), 1/3);
-            Q2 = ScalePoint2(SumPoint2(ScalePoint2(P1, 2), P2), 1/3);
+
+            Q1 = ScalePoint2(SumPoint2(ScalePoint2(P1, 2.0), P0), (double)(1.0/3.0));
+            Q2 = ScalePoint2(SumPoint2(ScalePoint2(P1, 2.0), P2), (double)(1.0/3.0));
             
 
             WriteCurveto3(f, Q1, Q2, P2);

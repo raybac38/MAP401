@@ -19,7 +19,7 @@ Vector2 ScaleVector2(Vector2 a, double b)
 Point2 ScalePoint2(Point2 a, double b)
 {
     Point2 pt;
-    pt.x = a.x *b;
+    pt.x = a.x * b;
     pt.y = a.y * b;
     return pt;
 }
@@ -239,7 +239,7 @@ double DistanceSegmentPoint(Point2 a, Point2 b, Point2 c)
 
 Point2 Point2MiddlePoint2(Point2 a, Point2 b)
 {
-    return SetPoint2(a.x + b.x / 2 ,  a.y + b.y / 2);
+    return SetPoint2((a.x + b.x) / 2.0 ,  (a.y + b.y)/ 2.0);
 }
 
 Point2 Vector2toPoint2(Vector2 a)
@@ -261,8 +261,8 @@ double Point2DistanceBezier2(Point2 c0, Point2 c1, Point2 c2, Point2 a, double t
 {
     /// Calcule du point sur la courbe de bezier
 
-    double alpha = (1 - ti) * (1 - ti);
-    double beta = 2 * ti * (1 - ti);
+    double alpha = ((double)1.0 - ti) * (double)(1.0 - ti);
+    double beta = 2.0 * ti * (double)(1.0 - ti);
     double gamma = ti * ti;
 
     Point2 khi = ScalePoint2(c0, alpha);
