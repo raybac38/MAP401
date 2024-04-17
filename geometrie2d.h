@@ -102,6 +102,9 @@ Vector2 Point2toVector2(Point2 a);
 Calcule le point au milleux
 */
 Point2 Point2MiddlePoint2(Point2 a, Point2 b);
+/*
+Calcule la distance entre le poit C(ti) de la courbe de bezier de degres 2 et le point a
+*/
 double Point2DistanceBezier2(Point2 c0, Point2 c1, Point2 c2, Point2 a, double ti);
 
 

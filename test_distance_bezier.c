@@ -1,43 +1,48 @@
 #include "geometrie2d.h"
 #include "tableau.h"
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
-
-int main(int argc, char * argv[])
+int main()
 {
-    Tableau * tab = InitTableau(TYPE_POINT2, 0);
+    printf("Bienvenu dans le programme de test ^^\n");
+    unsigned taille = 0;
+    do
+    {
+        printf("Quelle taille voulez vous travailler ? \n");
+        scanf("%u", &taille);
+        if (taille < 2)
+        {
+            printf(" trop petit, min : 2\n");
+        };
 
-    Point2 a = SetPoint2(0, 0);
-    Point2 b = SetPoint2(1, 0);
-    Point2 c = SetPoint2(1, 1);
-    Point2 d = SetPoint2(1, 2);
-    Point2 e = SetPoint2(2, 2);
-    Point2 f = SetPoint2(3, 2);
-    Point2 g = SetPoint2(3, 3);
-    Point2 h = SetPoint2(4, 3);
-    Point2 i = SetPoint2(5, 3);
+    } while (taille < 2);
 
-    TableauAppend(tab, &a);
-    TableauAppend(tab, &b);
-    TableauAppend(tab, &c);
-    TableauAppend(tab, &d);
-    TableauAppend(tab, &e);
-    TableauAppend(tab, &f);
-    TableauAppend(tab, &g);
-    TableauAppend(tab, &h);
-    TableauAppend(tab, &i);
+    Tableau *tab = InitTableau(TYPE_POINT2, 0);
 
-    Point2 C0 = a;
-    Point2 C2 = i;
+    double a = 0.0 , b = 0.0;
+
+    do
+    {
+        printf("Point numero %u \n", TableauGetSize(tab));
+        scanf("%lf %lf", &a, &b);
+        Point2 p = SetPoint2(a, b);
+        TableauAppend(tab, &p);
+        taille--;
+
+    } while (taille != 0);
+
+    taille = TableauGetSize(tab);
+
+    Point2 C0 = TableauGetPoint2(tab, 0);
+    Point2 C2 = TableauGetPoint2(tab, TableauGetSize(tab) - 1);
     Point2 C1 = ApproxBezier2(tab, 0, TableauGetSize(tab) - 1);
 
-    ShowPoint2(C1);
+    printf("Point de controle :");    ShowPoint2(C1);    printf("\n");
 
-    for (unsigned i = 1; i < TableauGetSize(tab) - 1; i++)
+    for (unsigned i = 1; i < taille - 1; i++)
     {
-        double distance = Point2DistanceBezier2(C0, C1, C2, TableauGetPoint2(tab, i), (double)i/8.0);
+        double distance = Point2DistanceBezier2(C0, C1, C2, TableauGetPoint2(tab, i), (double)i / (double)taille);
         printf("Distance %lf \n", distance);
     }
-
 }

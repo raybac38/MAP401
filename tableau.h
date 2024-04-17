@@ -62,12 +62,14 @@ void TableauWrite(Tableau * tab,Tableau * start, char * name);
 
 
 /*
-    Approxime une serie de point par une courbe de beziez
+    Approximation d'une serie de point par une courbe de bezier
+    Renvoie le point de controle intérmediaire
 */
 Point2 ApproxBezier2(Tableau *, unsigned a, unsigned b);
 
 /*
     Somme des points entre A et B exclus
+    Renvoie le point de la sommation
 */
 Point2 TableauSumPoint2(Tableau *, unsigned a, unsigned b);
 

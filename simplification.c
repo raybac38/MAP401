@@ -91,7 +91,15 @@ Tableau * Simplification_Bezier2(Tableau * liste_contours, double distance_seuil
 
         Recursif_Douglas_Peucker_bezier2(contour, contour_simplifiers, 0, last_element_index, distance_seuil);
         
+        if(TableauGetSize(contour_simplifiers) == 2)
+        { 
+            TableauFree(&contour_simplifiers);
+            continue;    
+        }
+
         Point2 point = TableauGetPoint2(contour_simplifiers, 0);
+
+        
         TableauAppend(contour_simplifiers, &point);
 
         TableauAppend(liste_contours_simplifier , contour_simplifiers);   
