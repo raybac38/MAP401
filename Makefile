@@ -37,7 +37,8 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -pg -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_segment_simplification test_bezier2_simplification test_distance_bezier
+EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_segment_simplification test_bezier2_simplification test_distance_bezier test_bezier3_simplification \
+test_distance_bezier3
 
 #############################################################################
 # definition des regles
@@ -98,6 +99,13 @@ ps.o: ps.c ps.h tableau.h
 #	$(CC) -c $(COMPILOPTS) $< -o $@
 
 test_distance_bezier.o: test_distance_bezier.c tableau.h geometrie2d.h 
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module contour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@
+
+test_distance_bezier3.o: test_distance_bezier3.c tableau.h geometrie2d.h 
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module contour"
@@ -181,6 +189,13 @@ test_bezier2_simplification.o : test_bezier2_simplification.c simplification.h p
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $< -o $@	
 
+test_bezier3_simplification.o : test_bezier3_simplification.c simplification.h ps.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_multicontour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $< -o $@	
+
 test_dot_product.o : test_dot_product.c geometrie2d.h
 	@echo ""
 	@echo "---------------------------------------------"
@@ -248,7 +263,21 @@ test_bezier2_simplification : test_bezier2_simplification.o simplification.o mul
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
+test_bezier3_simplification : test_bezier3_simplification.o simplification.o multi_contour.o contour.o geometrie2d.o tableau.o image.o ps.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
 test_distance_bezier: test_distance_bezier.o tableau.o geometrie2d.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_distance_bezier3: test_distance_bezier3.o tableau.o geometrie2d.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

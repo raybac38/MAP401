@@ -72,7 +72,18 @@ Point2 ApproxBezier2(Tableau *, unsigned a, unsigned b);
     Renvoie le point de la sommation
 */
 Point2 TableauSumPoint2(Tableau *, unsigned a, unsigned b);
-
+/*
+    Somme des points entre A et B exclus
+    avec gamma
+    Il effectue la somme des points lequelles sont multiplier par coef_a * index + coef_b
+    Renvoie le point de la sommation
+*/
+Point2 TableauSumPoint2WithGama(Tableau *tab, unsigned a, unsigned b, double coef_a, double coef_b);
+/*
+    Approximation d'une serie de point par une courbe de bezier
+    Renvoie le point de controle intérmediaire
+*/
+void ApproxBezier3(Tableau *tab, unsigned a, unsigned b, Point2 * pointer_C1, Point2 * pointer_C2);
 
 #endif
 

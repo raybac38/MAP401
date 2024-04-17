@@ -274,3 +274,42 @@ double Point2DistanceBezier2(Point2 c0, Point2 c1, Point2 c2, Point2 a, double t
 
     return Distance(point, a);
 }
+
+double Point2DistanceBezier3(Point2 c0, Point2 c1, Point2 c2, Point2 c3, Point2 a, double ti)
+{
+    /// Calcule du point sur la courbe de bezier
+/*
+    ShowPoint2(c0);
+    ShowPoint2(c1);
+    ShowPoint2(c2);
+    ShowPoint2(c3);
+    printf("\n");
+*/
+    double alpha = (1.0 - ti) * (1.0 - ti) * (1.0 - ti);
+    double beta = 3.0 * ti * (1.0 - ti) * (1.0 - ti);
+    double gamma = 3.0 * ti * ti * (1.0 - ti);
+    double delta = ti * ti * ti;
+
+   // printf("%lf %lf %lf %lf %lf\n", ti, alpha, beta, gamma, delta);
+
+    Point2 khi = ScalePoint2(c0, alpha);
+    Point2 psi = ScalePoint2(c1, beta);
+    Point2 omega = ScalePoint2(c2, gamma);
+    Point2 zeta = ScalePoint2(c3, delta);
+
+/*
+    ShowPoint2(khi); printf("\n");
+    ShowPoint2(psi); printf("\n");
+    ShowPoint2(omega); printf("\n");
+    ShowPoint2(zeta); printf("\n");
+*/
+
+    Point2 point = SumPoint2(khi, psi);
+    point = SumPoint2(point, omega);
+    point = SumPoint2(point, zeta);
+
+    
+
+    return Distance(point, a);
+}
+

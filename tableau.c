@@ -4,6 +4,9 @@
 #include "tableau.h"
 
 void TableauIncreaseSize(Tableau *tab);
+void ElevationDegres(Point2 C0, Point2 C1, Point2 C2, Point2 * pointer_D1, Point2 * pointer_D2);
+double GetGamma(double k, double n);
+
 
 /* Initialise un tableau*/
 Tableau *InitTableau(Type type, unsigned size)
@@ -229,6 +232,23 @@ Point2 TableauSumPoint2(Tableau *tab, unsigned a, unsigned b)
     return somme;
 }
 
+
+
+Point2 TableauSumPoint2WithGama(Tableau *tab, unsigned a, unsigned b, double coef_a, double coef_b)
+{
+    Point2 somme = SetPoint2(0, 0);
+    unsigned delta = b - a;
+
+    for (unsigned i = a + 1; i < b; i++)
+    {
+        Point2 temporaire = TableauGetPoint2(tab, i);
+        double gamma = GetGamma(coef_a * (double) (i - a)+ coef_b, (double)delta);
+        temporaire = ScalePoint2(temporaire, gamma);
+        somme = SumPoint2(somme, temporaire);
+    };
+    return somme;
+}
+
 Point2 ApproxBezier2(Tableau *tab, unsigned a, unsigned b)
 {
     unsigned delta = b - a;
@@ -252,50 +272,61 @@ Point2 ApproxBezier2(Tableau *tab, unsigned a, unsigned b)
     return c;
 }
 
-/*
-double alpha(int n) {
-    return (-15 * n * n * n + 5 * n * n + 2 * n + 4) / (3.0 * (n + 2) * (3 * n * n + 1));
+double GetAlpha(double n) {
+    return (-15.0 * n * n * n + 5.0 * n * n + 2.0 * n + 4.0) / (3.0 * (n + 2.0) * (3.0 * n * n + 1.0));
 }
 
-double beta(int n) {
-    return (10 * n * n * n - 15 * n * n + n + 2) / (3.0 * (n + 2) * (3 * n * n + 1));
+double GetBeta(double n) {
+    return (10.0 * n * n * n - 15.0 * n * n + n + 2.0) / (3.0 * (n + 2.0) * (3.0 * n * n + 1.0));
 }
 
-double lambda(int n) {
-    return (70 * n) / (3.0 * (n * n - 1) * (n * n - 4) * (3 * n * n + 1));
+double GetLambda(double n) {
+    return (70.0 * n) / (3.0 * (n * n - 1.0) * (n * n - 4.0) * (3.0 * n * n + 1.0));
 }
 
-double gamma(int k, int n) {
-    return 6 * k * k * k * k - 8 * n * k * k * k + 6 * k * k - 4 * n * k + n * n * n * n - n * n;
+double GetGamma(double k, double n) {
+     return 6.0 * k * k * k * k - 8.0 * n * k * k * k + 6.0 * k * k - 4.0 * n * k + n * n * n * n - n * n;
 }
 
-Point2 ApproxBezier3(Tableau *tab, unsigned a, unsigned b)
+void ApproxBezier3(Tableau *tab, unsigned a, unsigned b, Point2 * pointer_C1, Point2 * pointer_C2)
 {
     unsigned delta = b - a;
 
+    Point2 C1, C2 = SetPoint2(0, 0);
+    Point2 C0 = TableauGetPoint2(tab, a);
+    Point2 C3 = TableauGetPoint2(tab, b);
+
     if (delta == 1 || delta == 2)
     {
-        //Degres 2
+        Point2 T0 = ApproxBezier2(tab, a, b);
+        ElevationDegres(C0, T0, C3, &C1, &C2);
 
     }
+    else
+    {
+        double alpha = GetAlpha(delta);
+        double beta = GetBeta(delta);
+        double lambda = GetLambda(delta);
 
-    double alpha = (3.0 * (double)delta) / (((double)delta * (double)delta) - 1.0);
-    double beta = (1.0 - 2.0 * (double)delta) / (2.0 * ((double)delta - 1.0));
+        Point2 sum_1 = TableauSumPoint2WithGama(tab, a, b, 1, 0);
+        Point2 sum_2 = TableauSumPoint2WithGama(tab, a, b, -1, delta);
 
-    //printf("%lf %lf \n",alpha, beta);
+        C1 = SumPoint2(ScalePoint2(C0, alpha), SumPoint2(ScalePoint2(sum_1, lambda), ScalePoint2(C3, beta)));
+        C2 = SumPoint2(ScalePoint2(C0, beta), SumPoint2(ScalePoint2(sum_2, lambda), ScalePoint2(C3, alpha)));
+    }
+    (*pointer_C1) = C1;
+    (*pointer_C2) = C2;
 
-    Point2 sum = TableauSumPoint2(tab, a, b);
-
-    //ShowPoint2(sum);
-
-
-    Point2 a_plus_b = SumPoint2(TableauGetPoint2(tab, a), TableauGetPoint2(tab, b));
-        //ShowPoint2(a_plus_b);
-
-    Point2 c = SumPoint2(ScalePoint2(sum, alpha), ScalePoint2(a_plus_b, beta));
-    //ShowPoint2(c);
-
-    return c;
+    return;
 }
 
-*/
+void ElevationDegres(Point2 C0, Point2 C1, Point2 C2, Point2 * pointer_D1, Point2 * pointer_D2)
+{
+    Point2 D1 = ScalePoint2(SumPoint2(ScalePoint2(C1, 2.0), C0), 1.0/3.0);
+    Point2 D2 = ScalePoint2(SumPoint2(ScalePoint2(C1, 2.0), C2), 1.0/3.0);
+
+    (*pointer_D1) = D1;
+    (*pointer_D2) = D2;
+
+    return;
+}
