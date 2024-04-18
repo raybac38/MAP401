@@ -60,7 +60,7 @@ int main(int argc, char * argv[])
     }
     printf("Apres traitement : \n");
     printf("Total nombre point : %d\n", somme_point);
-    printf("Total nombre segment : %d\n", somme_segment);
+    printf("Total nombre courbe : %d\n", (somme_point - 1) / 2);
 
     printf("Fin du teste\n");
             printf("Impression de l'image de contours \n");
