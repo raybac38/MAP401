@@ -115,6 +115,8 @@ Type TableauGetType(Tableau *tab)
 /* Lièbre la mémoire du tableau*/
 void TableauFree(Tableau **tab)
 {
+    unsigned size = 0;
+
     switch ((*tab)->type)
     {
     case TYPE_INT:
@@ -128,9 +130,9 @@ void TableauFree(Tableau **tab)
         *tab = NULL;
         break;
     case TYPE_TABLEAU:
-        unsigned size = (*tab)->size;
+        size = (*tab)->size;
 
-        for (size_t index = 0; index < size - 1; index++)
+        for (unsigned index = 0; index < size - 1; index++)
         {
             TableauFree((Tableau **)&(*((Tableau **)(*tab)->array + index)));
         }

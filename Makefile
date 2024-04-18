@@ -19,7 +19,7 @@
 #############################################################################
 
 # compilateur C
-CC = gcc
+CC = clang
 
 # chemin d'acces aux librairies (interfaces)
 INCDIR = .
@@ -28,13 +28,13 @@ INCDIR = .
 LIBDIR = .
 
 # options pour l'�dition des liens
-LDOPTS = -L$(LIBDIR) -lm
+LDOPTS =  -Ofast -L$(LIBDIR) -lm
 
 # options pour la recherche des fichiers .o et .h
 INCLUDEOPTS = -I$(INCDIR)
 
 # options de compilation
-COMPILOPTS = -g -pg -Wall $(INCLUDEOPTS)
+COMPILOPTS = -Ofast $(INCLUDEOPTS)
 
 # liste des executables
 EXECUTABLES = test_image test_contour test_mask_img test_multicontour test_dot_product test_segment_simplification test_bezier2_simplification test_distance_bezier test_bezier3_simplification \

@@ -49,7 +49,7 @@ Point2 * InitPoint2(void);
 double Norme(Vector2 a);
 
 /*Calculate distance between two point*/
-double Distance(Point2 a, Point2 b);
+double Distance(Point2 a,Point2 b);
 
 /*Create a vector of norm 1*/
 Vector2 Normalize(Vector2 a);
@@ -90,8 +90,7 @@ unsigned IsVector2Equal(Vector2 a, Vector2 b);
 /*distance between a segement and un points
 Segment AB et point C
 */
-
-double DistanceSegmentPoint(Point2 a, Point2 b, Point2 c);
+double DistanceSegmentPoint(Point2 a, Point2 b,Point2 c);
 
 /*Convertion*/
 

@@ -202,9 +202,6 @@ unsigned IsVector2Equal(Vector2 a, Vector2 b)
 
 double DistanceSegmentPoint(Point2 a, Point2 b, Point2 c)
 {
-    Vector2 ab = Vector2FromPoint2(a,b);
-    Vector2 ac = Vector2FromPoint2(a,c);
-
     double distance_ab = Distance(a,b);
     double distance_ac = Distance(a,c);
 
@@ -212,6 +209,9 @@ double DistanceSegmentPoint(Point2 a, Point2 b, Point2 c)
     {
         return distance_ac;
     }
+    Vector2 ac = Vector2FromPoint2(a,c);
+
+    Vector2 ab = Vector2FromPoint2(a,b);
 
     double dot_product = Dotproduct(ab, ac);
 

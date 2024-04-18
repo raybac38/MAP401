@@ -213,7 +213,7 @@ Tableau * Simplification_Bezier3(Tableau * liste_contours, double distance_seuil
 
         Recursif_Douglas_Peucker_bezier3(contour, contour_simplifiers, 0, last_element_index, distance_seuil);
         
-        if(TableauGetSize(contour_simplifiers) == 2 | TableauGetSize(contour_simplifiers) == 3)
+        if(TableauGetSize(contour_simplifiers) == 2 || TableauGetSize(contour_simplifiers) == 3)
         { 
             TableauFree(&contour_simplifiers);
             continue;    

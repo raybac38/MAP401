@@ -31,7 +31,7 @@ void PsSimpleSegment(Tableau *contours, Point2 dimention, char *name)
             WriteLineto(f, TableauGetPoint2(tab, j));
         }
         WriteStrokeWidth(f, 0);
-        WriteStrokeColor(f, 255, 0, 0);
+        WriteStrokeColor(f,(unsigned char) 255, (unsigned char)0,(unsigned char) 0);
     }
 
     WriteFill(f);
@@ -132,7 +132,7 @@ void PsCourbeBezier2(Tableau *contours, Point2 dimention, char *name)
             P0 = P2;
         }
         WriteStrokeWidth(f, 0);
-        WriteStrokeColor(f, 255, 0, 0);
+        WriteStrokeColor(f,(unsigned char) 255,(unsigned char) 0, (unsigned char)0);
     }
 
     WriteFill(f);
@@ -162,7 +162,7 @@ void PsCourbeBezier3(Tableau *contours, Point2 dimention, char *name)
             
         }
         WriteStrokeWidth(f, 0);
-        WriteStrokeColor(f, 255, 0, 0);
+        WriteStrokeColor(f,(unsigned char) 255,(unsigned char) 0, (unsigned char)0);
     }
 
     WriteFill(f);
