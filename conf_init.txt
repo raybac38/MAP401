@@ -1,0 +1,3 @@
+Distance_seuil: 1
+Methode: Segment
+Sortie: ./zzz
