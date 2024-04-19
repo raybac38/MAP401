@@ -1,0 +1,13 @@
+Information :
+Image : ./IMAGES_TESTS/ColombesDeLaPaix.pbm
+Distante seuil : 16.000000
+Image de taille : 500 x 500 
+Nombre de contours detecter : 20
+Avant traitement : 
+Total nombre point : 7392
+Total nombre segment : 7372
+Apres traitement : 
+Total nombre point : 293
+Total nombre courbe : 91
+Fin du teste
+Impression de l'image de contours 

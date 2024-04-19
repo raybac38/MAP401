@@ -17,6 +17,12 @@ Tableau * Simplification_Segment(Tableau * liste_contours, double distance_seuil
 
 
         Recursif_Douglas_Peucker(contour, contour_simplifiers, 0, last_element_index, distance_seuil);
+
+        if(TableauGetSize(contour_simplifiers) == 1)
+        { 
+            TableauFree(&contour_simplifiers);
+            continue;    
+        }
         
         Point2 point = TableauGetPoint2(contour_simplifiers, 0);
         TableauAppend(contour_simplifiers, &point);
